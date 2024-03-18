@@ -155,7 +155,7 @@ def indexPl():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
 
         return render_template(
             'index-pl.html', 
@@ -175,7 +175,7 @@ def done():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'done-pl.html',
               blog_post_three=blog_post_three)
@@ -205,7 +205,7 @@ def dune():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'dune-pl.html', 
             blog_post_three=blog_post_three)
@@ -222,7 +222,7 @@ def kurtyna():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'kurtyna-pl.html', 
             blog_post_three=blog_post_three)
@@ -239,7 +239,7 @@ def circle():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'circle-pl.html', 
             blog_post_three=blog_post_three)
@@ -256,7 +256,7 @@ def wind():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'wind-pl.html', 
             blog_post_three=blog_post_three)
@@ -273,7 +273,7 @@ def floryda():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'floryda-pl.html', 
             blog_post_three=blog_post_three)
@@ -290,7 +290,7 @@ def lustrzany():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'lustrzany-pl.html', 
             blog_post_three=blog_post_three)
@@ -307,7 +307,7 @@ def miejska():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'miejska-pl.html', 
             blog_post_three=blog_post_three)
@@ -324,7 +324,7 @@ def gonty():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'gonty-pl.html', 
             blog_post_three=blog_post_three)
@@ -341,7 +341,7 @@ def lesznowolska():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'lesznowolska-pl.html', 
             blog_post_three=blog_post_three)
@@ -358,7 +358,7 @@ def about():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'about-pl.html', 
             blog_post_three=blog_post_three)
@@ -391,7 +391,7 @@ def team():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'team-pl.html', 
             team_list=team_list, 
@@ -405,7 +405,7 @@ def blogFull():
     blog_post = generator_daneDBList()
     blog_post_three = []
     for i, member in enumerate(blog_post):
-        if  i < 4: blog_post_three.append(member)
+        if  i < 3: blog_post_three.append(member)
     return render_template(
             'blog-full-pl.html', 
             blog_post_three=blog_post_three)
@@ -415,7 +415,7 @@ def blogOne():
     blog_post = generator_daneDBList()
     blog_post_three = []
     for i, member in enumerate(blog_post):
-        if  i < 4: blog_post_three.append(member)
+        if  i < 3: blog_post_three.append(member)
     return render_template(
             'blog-one-pl.html', 
             blog_post_three=blog_post_three)
@@ -429,7 +429,7 @@ def privacy():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'privacy-pl.html', 
             blog_post_three=blog_post_three)
@@ -446,7 +446,7 @@ def contact():
         blog_post = generator_daneDBList()
         blog_post_three = []
         for i, member in enumerate(blog_post):
-            if  i < 4: blog_post_three.append(member)
+            if  i < 3: blog_post_three.append(member)
         return render_template(
             'contact-pl.html', 
             blog_post_three=blog_post_three)
