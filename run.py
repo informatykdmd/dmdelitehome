@@ -53,7 +53,9 @@ def generator_teamDB():
             'DATE_TIME': data[9],
             'STATUS': int(data[10])
         }
-        teamData.append(theme)
+        # dostosowane dla elitehome
+        if data[4] == 'dmd elitehome':
+            teamData.append(theme)
     return teamData
 
 def generator_subsDataDB():
