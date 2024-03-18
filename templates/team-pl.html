@@ -32,21 +32,34 @@
                     </div>
                     <div class="team_social field-position-p padding-y-small">
                         <ul class="list-inline mb-0 text-center">
+                            {% if member['PHONE'] != '' %}
                             <li class="list-inline-item">
                                 <a href="tel:{{ member['PHONE'] }}" target="_blank" rel="noreferrer">
                                     <i class="fa fa-phone"></i>
                                 </a>
                             </li>
+                            {% endif %}
+                            {% if member['EMAIL'] != '' %}
                             <li class="list-inline-item">
                                 <a href="mailto:{{ member['EMAIL'] }}" target="_blank" rel="noreferrer">
                                     <i class="fa fa-envelope"></i>
                                 </a>
                             </li>
+                            {% endif %}
+                            {% if member['FACEBOOK'] != '' %}
                             <li class="list-inline-item">
                                 <a href="{{ member['FACEBOOK'] }}" target="_blank" rel="noreferrer">
                                     <i class="fa fa-facebook"></i>
                                 </a>
                             </li>
+                            {% endif %}
+                            {% if member['LINKEDIN'] != '' %}
+                            <li class="list-inline-item">
+                                <a href="{{ member['LINKEDIN'] }}" target="_blank" rel="noreferrer">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
