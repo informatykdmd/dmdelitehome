@@ -150,10 +150,19 @@ def indexPl():
         team_list = generator_teamDB()
         fourListTeam = []
         for i, member in enumerate(team_list):
-            if  i < 4:
-                fourListTeam.append(member)
-        return render_template('index-pl.html', fourListTeam=fourListTeam)
-    
+            if  i < 4: fourListTeam.append(member)
+        
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+
+        return render_template(
+            'index-pl.html', 
+            fourListTeam=fourListTeam, 
+            blog_post_three=blog_post_three
+            )
+
     if session['lang'] == 'en':
         return render_template('index-en.html')
 
@@ -163,7 +172,13 @@ def done():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('done-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'done-pl.html',
+              blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('done-en.html')
@@ -187,7 +202,13 @@ def dune():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('dune-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'dune-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('dune-en.html')
@@ -198,7 +219,13 @@ def kurtyna():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('kurtyna-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'kurtyna-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('kurtyna-en.html')
@@ -209,7 +236,13 @@ def circle():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('circle-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'circle-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('circle-en.html')
@@ -220,7 +253,13 @@ def wind():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('wind-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'wind-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('wind-en.html')
@@ -231,7 +270,13 @@ def floryda():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('floryda-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'floryda-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('floryda-en.html')
@@ -242,7 +287,13 @@ def lustrzany():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('lustrzany-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'lustrzany-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('lustrzany-en.html')
@@ -253,7 +304,13 @@ def miejska():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('miejska-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'miejska-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('miejska-en.html')
@@ -264,7 +321,13 @@ def gonty():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('gonty-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'gonty-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('gonty-en.html')
@@ -275,7 +338,13 @@ def lesznowolska():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('lesznowolska-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'lesznowolska-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('lesznowolska-en.html')
@@ -286,7 +355,13 @@ def about():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('about-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'about-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('about-en.html')
@@ -313,18 +388,37 @@ def team():
 
     if session['lang'] == 'pl':
         team_list = generator_teamDB()
-        return render_template('team-pl.html', team_list=team_list)
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'team-pl.html', 
+            team_list=team_list, 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('team-en.html')
 
 @app.route('/blog-full-pl')
 def blogFull():
-    return render_template('blog-full-pl.html')
+    blog_post = generator_daneDBList()
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 4: blog_post_three.append(member)
+    return render_template(
+            'blog-full-pl.html', 
+            blog_post_three=blog_post_three)
 
 @app.route('/blog-one-pl')
 def blogOne():
-    return render_template('blog-one-pl.html')
+    blog_post = generator_daneDBList()
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 4: blog_post_three.append(member)
+    return render_template(
+            'blog-one-pl.html', 
+            blog_post_three=blog_post_three)
 
 @app.route('/privacy-pl')
 def privacy():
@@ -332,7 +426,13 @@ def privacy():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('privacy-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'privacy-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('privacy-en.html')
@@ -343,7 +443,13 @@ def contact():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('contact-pl.html')
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 4: blog_post_three.append(member)
+        return render_template(
+            'contact-pl.html', 
+            blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
         return render_template('contact-en.html')

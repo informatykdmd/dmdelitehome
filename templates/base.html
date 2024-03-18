@@ -130,13 +130,15 @@
                                 <h3>Blog</h3>
                                 <hr />
                                 <ul class="list-unstyled">
+                                    {% for post in blog_post_three %}
                                     <li class="rd-nav-item margin-top-standard">
                                         <h5 class="strong">
-                                            <a href="#">Dzień Kobiet: święto siły i inspiracji!</a>
+                                            <a href="//blog-one-pl?post={{post['id']}}">{{post['title']}}</a>
                                         </h5>
-                                        <div class="font-category">Dzień Kobiet</div>
-                                        <div class="footer-desc"><i class="fa fa-user"></i> Dariusz Dobrosielski <i class="fa fa-calendar"></i> 8 marca 2024</div>
+                                        <div class="font-category">{{post['category']}}</div>
+                                        <div class="footer-desc"><i class="fa fa-user"></i> {{post['category']}} <i class="fa fa-calendar"></i> {{post['category']}}</div>
                                     </li>
+                                    {% endfor %}
                                     <li class="rd-nav-item margin-top-standard">
                                         <h5 class="strong">
                                             <a href="#">Dzień Kobiet: święto siły i inspiracji!</a>
