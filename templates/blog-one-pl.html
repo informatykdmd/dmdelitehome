@@ -1,4 +1,202 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!--A FEW WORDS-->
+<section class="section">
+    <div class="container text-center text-lg-start">
+      <div class="image-wrap-1"><img src="{{choiced['mainFoto']}}" alt=""/></div>
+      <h3 class="text-primary padding-top-standard">{{choiced['title']}}</h3>
+      <div class="gray-style">
+        <a href="#">
+          <i class="fa fa-user"></i> {{choiced['author']}}
+        </a>
+        | 
+        <a href="#">
+          <i class="fa fa-calendar"></i> {{choiced['data']}} 
+        </a>
+        | 
+        <a href="#">
+            {set len_comments = len(choiced['comments'])}
+          <i class="fa fa-commenting-o"></i> {{len_comments}}
+        </a>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <p>
+            {{choiced['introduction']}} 
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+<!--OFFERING GREAT EXPERTISE-->
+<section class="section margin-top-standard">
+    <div class="container wow fadeInLeft" data-wow-delay=".5s" data-wow-duration="1s">
+      <div class="box-lg blog-highlight-background">
+        <div class="box-lg_body inset-3 text-center text-md-start">
+            <blockquote class="quote padding-standard blog-highlight-font">
+                <p class="">
+                    {{choiced['highlight']}}
+                </p>
+            </blockquote>
+        </div>
+      </div>
+    </div>
+</section>
+  
+<section class="section padding-standard margin-top-standard">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 wow fadeInUp">
+                {{choiced['additionalList']}}
+                <ul>
+                    <li class="margin-top-standard">
+                        Siła i determinacja: Dzień Kobiet to idealny moment, aby docenić siłę i determinację kobiet, 
+                        które na przestrzeni dziejów przełamywały bariery i torowały drogę do równouprawnienia. 
+                        Nie sposób wymienić wszystkich, ale warto wspomnieć o takich ikonicznych postaciach jak 
+                        Marie Curie, Emmeline Pankhurst, Malala Yousafzai czy Irena Sendlerowa. Ich odwaga 
+                        i zaangażowanie inspirują miliony ludzi na całym świecie.
+                    </li>
+                    <li class="margin-top-standard">
+                        Siła i determinacja: Dzień Kobiet to idealny moment, aby docenić siłę i determinację kobiet, 
+                        które na przestrzeni dziejów przełamywały bariery i torowały drogę do równouprawnienia. 
+                        Nie sposób wymienić wszystkich, ale warto wspomnieć o takich ikonicznych postaciach jak 
+                        Marie Curie, Emmeline Pankhurst, Malala Yousafzai czy Irena Sendlerowa. Ich odwaga 
+                        i zaangażowanie inspirują miliony ludzi na całym świecie.
+                    </li>
+                    <li class="margin-top-standard">
+                        Siła i determinacja: Dzień Kobiet to idealny moment, aby docenić siłę i determinację kobiet, 
+                        które na przestrzeni dziejów przełamywały bariery i torowały drogę do równouprawnienia. 
+                        Nie sposób wymienić wszystkich, ale warto wspomnieć o takich ikonicznych postaciach jak 
+                        Marie Curie, Emmeline Pankhurst, Malala Yousafzai czy Irena Sendlerowa. Ich odwaga 
+                        i zaangażowanie inspirują miliony ludzi na całym świecie.
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4 margin-top-standard">
+                <img src="{{choiced['contentFoto']}}" alt=""/>
+            </div>
+        </div>
+    </div>
+</section>
+<!--OUR CUSTOMERS-->
+<section class="well-2 well-2--inset-1 text-xs-center">
+    <div class="container">
+      <!-- <h3 class="text-primary">TAGI</h3> -->
+      
+      <div class="row">            
+        <div class="col-lg-8 col-md-8 col-sm-12 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
+            <h2 class="small margin-top-standard">TAGI:</h2>
+            {{choiced['tags']}}
+            <ul class="inline-list">
+                <li><a href="#">Inbound Operators</a></li>
+                <li><a href="#">Travel Agents</a></li>
+                <li><a href="#">Corporations</a></li>
+                <li><a href="#">Conferences </a></li>
+                <li><a href="#">Incentive Groups</a></li>
+                <li><a href="#">Inbound </a></li>
+                <li><a href="#">Travel </a></li>
+                <li><a href="#">Corporations</a></li>
+                <li><a href="#">Conferences </a></li>
+                <li><a href="#">Incentive </a></li>
+                <li><a href="#">Inbound </a></li>
+                <li><a href="#">Travel </a></li>
+                <li><a href="#">Corporations</a></li>
+                <li><a href="#">Conferences </a></li>
+                <li><a href="#">Incentive </a></li>
+            </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-4 col-sm-8 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
+            <h2 class="small  margin-top-standard">UDOSTĘPNIJ:</h2>
+            <ul class="inline-list bg-white ">
+                <li><a class="link-dark icon fa fa-facebook" href="https://www.facebook.com/dmddomy/" target="_blank"></a></li>
+                <li><a class="link-dark icon fa fa-youtube" href="https://www.youtube.com/channel/UCBRN-SPMEIYK6YRV23Komxw" target="_blank"></a></li>
+                <li><a class="link-dark icon fa fa-instagram" href="https://www.instagram.com/dmddomy/" target="_blank"></a></li>
+            </ul>
+        </div>
+        <hr class="margin-top-standard"/>
+      </div>
+    </div>
+</section>
+<div class="margin-top-standard">
+    <div class="container y-center">
+        <h3 class="text-primary padding-top-standard">Autor</h3>
+        <div class="stick-all y-center  shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+            <div class="padding-standard">
+                <img class="avatar" src="https://dmddomy.pl/images/team/tm-01-460x460-dariusz_dobrosielski.png" alt="" />
+            </div>
+            <div class="padding-standard width-standard">
+                <h5 class="normal">{{choiced['author']}}</h5>
+                <p>
+                    Właściciel firmy DMD EliteHome
+                </p>
+            </div>
+            <div class="margin-left-65">
+                <ul class="inline-list bg-white">
+                    <li><a class="link-dark icon fa fa-facebook" href="https://www.facebook.com/dmddomy/" target="_blank"></a></li>
+                    
+                    <li><a class="link-dark icon fa fa-instagram" href="https://www.instagram.com/dmddomy/" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="margin-top-standard">
+    <div class="container">
+        <h3 class="text-primary padding-top-standard">Komentarze</h3>
+        <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-left-65 margin-top-standard">
+            <div class="padding-standard">
+                <img class="avatar" src="https://dmddomy.pl/images/team/tm-01-460x460-dariusz_dobrosielski.png" alt="" />
+            </div>
+            <div class="padding-standard width-full">
+                <div class="stick-all">
+                    <div class="y-top font-title padding-top-small">
+                        <h5 class="normal">Dariusz Dobrosielski</h5>
+                    </div>
+                    <div class="margin-left-standard font-strong y-top">
+                        <p>8 marca 2024</p>
+                    </div>
+                </div>
+                <p>
+                    Zapisz się do naszego newslettera, aby regularnie otrzymywać na swoją skrzynkę e-mail 
+                    najświeższe informacje, wyjątkowe oferty oraz ekskluzywne zaproszenia na wydarzenia organizowane 
+                    przez DMD, co pozwoli Ci aktywnie komentować nasze posty na blogu!
+                    Zapisz się do naszego newslettera, aby regularnie otrzymywać na swoją skrzynkę e-mail 
+                    najświeższe informacje, wyjątkowe oferty oraz ekskluzywne zaproszenia na wydarzenia organizowane 
+                    przez DMD, co pozwoli Ci aktywnie komentować nasze posty na blogu!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="margin-top-standard">
+    <div class="container">
+        <h3 class="text-primary padding-top-standard">Komentuj Post</h3>
+        <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-top-standard">
+            <form class="width-full">
+
+                <div class="stick-all">
+                    <div class="form-floating mb-3 width-full">
+                        <input type="text" class="form-control " id="floatingInput" placeholder="Imię i nazwisko">
+                        <label for="floatingInput">Imię i nazwisko</label>
+                    </div>
+                    <div class="form-floating mb-3 width-full margin-left-standard">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Adres E-mail</label>
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Komentarz</label>
+                </div>
+                <div class="margin-top-standard form-floating">
+        <button class="btn btn-primary btn-md button-primary font-button" type="submit">Komentuj Post<span class="insider"></span></button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
