@@ -410,15 +410,25 @@ def blogFull():
             'blog-full-pl.html', 
             blog_post_three=blog_post_three)
 
-@app.route('/blog-one-pl')
+@app.route('/blog-one-pl', methods=['GET'])
 def blogOne():
     blog_post = generator_daneDBList()
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
+
+    post_id = request.args.get('post')
+    try: post_id_int = int(post_id)
+    except ValueError: return redirect(url_for('indexPl'))
+    choiced = {}
+    for one_post in blog_post:
+        if int(one_post['id']) == post_id_int:
+            choiced = one_post
+
     return render_template(
             'blog-one-pl.html', 
-            blog_post_three=blog_post_three)
+            blog_post_three=blog_post_three,
+            choiced=choiced)
 
 @app.route('/privacy-pl')
 def privacy():
