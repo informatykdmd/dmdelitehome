@@ -147,7 +147,12 @@ def indexPl():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('index-pl.html')
+        team_list = generator_teamDB()
+        fourListTeam = []
+        for i, member in enumerate(team_list):
+            if  i < 4:
+                fourListTeam.append(member)
+        return render_template('index-pl.html', fourListTeam=fourListTeam)
     
     if session['lang'] == 'en':
         return render_template('index-en.html')
