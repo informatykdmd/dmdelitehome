@@ -305,7 +305,8 @@ def team():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        return render_template('team-pl.html')
+        team_list = generator_teamDB()
+        return render_template('team-pl.html', team_list=team_list)
     
     if session['lang'] == 'en':
         return render_template('team-en.html')
