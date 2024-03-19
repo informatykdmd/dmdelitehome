@@ -514,23 +514,22 @@ def addComm():
     subsList = generator_subsDataDB() # pobieranie danych subskrybentów
 
     if request.method == 'POST':
-        # form_data = request.form.to_dict()
         form_data = request.json
         print(form_data)
-        # SUB_NAME = form_data['Name']
-        # SUB_EMAIL = form_data['Email']
-        # SUB_COMMENT = form_data['Comment']
-        # POST_ID = form_data['id']
-        # allowed = False
-        # for subscriber in subsList:
-        #     if subscriber['email'] == SUB_EMAIL and subscriber['name'] == SUB_NAME and int(subscriber['status']) == 1:
-        #         allowed = True
-        # if allowed:
-        #     print(form_data)
-        # else:
-        #     flash('Konto nie aktywne!', 'danger')
-        #     return jsonify({'success': False, 'message': f'Konto nie aktywne!'})
-        return jsonify({'success': False, 'message': f'Konto nie aktywne!'})
+        SUB_NAME = form_data['Name']
+        SUB_EMAIL = form_data['Email']
+        SUB_COMMENT = form_data['Comment']
+        POST_ID = form_data['id']
+        allowed = False
+        for subscriber in subsList:
+            if subscriber['email'] == SUB_EMAIL and subscriber['name'] == SUB_NAME and int(subscriber['status']) == 1:
+                allowed = True
+        if allowed:
+            print(form_data)
+            return jsonify({'success': True, 'message': f'Post został skomentowany!'})
+        else:
+            return jsonify({'success': False, 'message': f'Musisz być naszym subskrybentem żeby komentować naszego bloga!'})
+        
     return redirect(url_for('indexPl'))
 
 @app.route('/add-subs-pl')
