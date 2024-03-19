@@ -122,19 +122,31 @@
         <h3 class="text-primary padding-top-standard">Autor</h3>
         <div class="stick-all y-center  shadow-lg p-3 mb-5 bg-body-tertiary rounded">
             <div class="padding-standard">
-                <img class="avatar" src="https://dmddomy.pl/images/team/tm-01-460x460-dariusz_dobrosielski.png" alt="" />
+                <img class="avatar" src="{{choiced['author_avatar']}}" alt="" />
             </div>
             <div class="padding-standard width-standard">
                 <h5 class="normal">{{choiced['author']}}</h5>
                 <p>
-                    Właściciel firmy DMD EliteHome
+                    {{choiced['author_about']}}
                 </p>
             </div>
             <div class="margin-left-65">
                 <ul class="inline-list bg-white">
-                    <li><a class="link-dark icon fa fa-facebook" href="https://www.facebook.com/dmddomy/" target="_blank"></a></li>
-                    
-                    <li><a class="link-dark icon fa fa-instagram" href="https://www.instagram.com/dmddomy/" target="_blank"></a></li>
+                    {% if choiced['author_facebook'] != '' %}
+                    <li>
+                        <a class="link-dark icon fa fa-facebook" href="{{choiced['author_facebook']}}" target="_blank"></a>
+                    </li>
+                    {% endif %}
+                    {% if choiced['author_instagram'] != '' %}
+                    <li>
+                        <a class="link-dark icon fa fa-instagram" href="{{choiced['author_instagram']}}" target="_blank"></a>
+                    </li>
+                    {% endif %}
+                    {% if choiced['author_twitter'] != '' %}
+                    <li>
+                        <a class="link-dark icon fa fa-instagram" href="{{choiced['author_twitter']}}" target="_blank"></a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
