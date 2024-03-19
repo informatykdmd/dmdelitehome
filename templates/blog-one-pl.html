@@ -152,9 +152,12 @@
         </div>
     </div>
 </div>
+{% if choiced['len'] > 0 %}
 <div class="margin-top-standard">
     <div class="container">
         <h3 class="text-primary padding-top-standard">Komentarze</h3>
+        {% for comm in choiced['comments']%}
+        {{comm}}
         <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-left-65 margin-top-standard">
             <div class="padding-standard">
                 <img class="avatar" src="https://dmddomy.pl/images/team/tm-01-460x460-dariusz_dobrosielski.png" alt="" />
@@ -178,8 +181,10 @@
                 </p>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
+{% endif %}
 <div class="margin-top-standard">
     <div class="container">
         <h3 class="text-primary padding-top-standard">Komentuj Post</h3>

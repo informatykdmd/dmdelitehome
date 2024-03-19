@@ -131,6 +131,7 @@ def generator_daneDBList():
             comments_dict[i]['message'] = com[2]
             comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['data-time'] = format_date(com[4])
             
         theme = {
