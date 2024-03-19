@@ -94,22 +94,11 @@ def generator_subsDataDB():
     for data in took_subsD:
         if data[4] != 1: continue
         ID = data[0]
-        allSubsComments = take_data_where_ID('*', 'comments', 'AUTHOR_OF_COMMENT_ID', ID)
-        commentsCollector = {}
-        for i, com in enumerate(allSubsComments, start=1):
-            commentsCollector[i] = {}
-            commentsCollector[i]['id'] = com[0]
-            commentsCollector[i]['message'] = com[2]
-            BLOG_POST_ID = int(com[1])
-            commentsCollector[i]['post_title'] = take_data_where_ID('TITLE', 'contents', 'ID', BLOG_POST_ID)[0][0]
-            commentsCollector[i]['data-time'] = com[4]
-
         theme = {
             'id': ID, 
             'email':data[2],
             'name':data[1], 
             'status': str(data[4]), 
-            'comments': commentsCollector
             }
         subsData.append(theme)
     return subsData
@@ -522,10 +511,23 @@ def sendMess():
 
 @app.route('/add-comm-pl', methods=['POST'])
 def addComm():
-    
+    subsList = generator_subsDataDB() # pobieranie danych subskrybentów
+
     if request.method == 'POST':
         form_data = request.form.to_dict()
-        print(form_data)
+        SUB_NAME = form_data['Name']
+        SUB_EMAIL = form_data['Email']
+        SUB_COMMENT = form_data['Comment']
+        POST_ID = form_data['id']
+        allowed = False
+        for subscriber in subsList:
+            if subscriber['email'] == SUB_EMAIL and subscriber['name'] == SUB_NAME and int(subscriber['status']) == 1:
+                allowed = True
+        if allowed:
+            print(form_data)
+        else:
+            flash('Konto nie aktywne!', 'danger')
+            return redirect(url_for('indexPl'))
 
     return redirect(url_for('indexPl'))
 
