@@ -27,7 +27,7 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 ###    ######    ######     ###
 ###############################
 
-def format_date(date_string, pl=True):
+def format_date(date_input, pl=True):
 
     ang_pol = {
         'January': 'styczeń',
@@ -43,7 +43,13 @@ def format_date(date_string, pl=True):
         'November': 'listopad',
         'December': 'grudzień'
     }
-    date_object = datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S')
+    # Sprawdzenie czy data_input jest instancją stringa; jeśli nie, zakładamy, że to datetime
+    if isinstance(date_input, str):
+        date_object = datetime.strptime(date_input, '%Y-%m-%d %H:%M:%S')
+    else:
+        # Jeśli date_input jest już obiektem datetime, używamy go bezpośrednio
+        date_object = date_input
+
     formatted_date = date_object.strftime('%d %B %Y')
     if pl:
         for en, pl in ang_pol.items():
