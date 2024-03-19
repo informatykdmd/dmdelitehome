@@ -515,7 +515,7 @@ def addComm():
 
     if request.method == 'POST':
         form_data = request.json
-        print(form_data)
+        # print(form_data)
         SUB_ID = None
         SUB_NAME = form_data['Name']
         SUB_EMAIL = form_data['Email']
@@ -542,9 +542,15 @@ def addComm():
         
     return redirect(url_for('indexPl'))
 
-@app.route('/add-subs-pl')
+@app.route('/add-subs-pl', methods=['POST'])
 def addSubs():
-    return redirect(url_for('indexPl'))
+    subsList = generator_subsDataDB() # pobieranie danych subskrybentów
+
+    if request.method == 'POST':
+        form_data = request.json
+        print(form_data)
+        return jsonify({'success': True, 'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'})
+    return jsonify({'success': False, 'message': f'błąd!'})
 
 @app.route('/pl')
 def langPl():

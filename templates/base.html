@@ -164,7 +164,7 @@
                                     najświeższe informacje, wyjątkowe oferty oraz ekskluzywne zaproszenia na wydarzenia 
                                     organizowane przez DMD, co pozwoli Ci aktywnie komentować nasze posty na blogu!
                                 </p>
-                                <form class="width-full">
+                                <form class="width-full" id="newsletter_form">
                                     <div class="stick-all">
                                         <div>
                                             <input class="footer-newsletter-form" type="text" placeholder="Podaj swoje Imię" id="newsletterEmailField" name="Imie" required/>
@@ -174,10 +174,11 @@
                                         </div>
                                     </div>
                                     <div class="padding-top-standard">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" id="send_newsletter">
                                             Zapisz się
                                         </button>
                                     </div>
+                                    <div class="margin-top-standard" id="komunikat_z_serwera_newsletter"></div>
                                 </form>
                             </div>
                         </div>
@@ -194,5 +195,44 @@
 	<script src="static/js/core.min.js"></script>
 	<script src="static/js/script.js"></script>
     {% block bottom_script %}{% endblock %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('newsletter_form').addEventListener('submit', function(e) {
+                e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
+                const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
+                const jsonFormData = Object.fromEntries(formData.entries());
+    
+                fetch('/add-subs-pl', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(jsonFormData) // Przekazuj dane z formularza
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // console.log(data);
+    
+                    const komunikatDiv = document.getElementById("komunikat_z_serwera_newsletter");
+                    if (komunikatDiv) {
+                        komunikatDiv.innerHTML = data.message;
+                        // Ustawienie koloru komunikatu na podstawie wartości 'success'
+                        if(data.success) {
+                            komunikatDiv.style.color = "green"; // Sukces - zielony
+                            document.getElementById('newsletter_form').reset();
+                        } else {
+                            komunikatDiv.style.color = "red"; // Niepowodzenie - czerwony
+                        }
+                        setTimeout(function() {
+                            komunikatDiv.innerHTML = '';
+                        }, 5000);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
     </body>
 </html>

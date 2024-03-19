@@ -183,12 +183,6 @@
     <div class="container">
         <h3 class="text-primary padding-top-standard">Komentuj Post</h3>
         <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-top-standard">
-            <!-- <form 
-                class="width-full" 
-                action="{{ url_for('addComm') }}" 
-                id="Comments" 
-                method="POST" 
-                enctype="multipart/form-data"> -->
             <form class="width-full" id="Comments">
 
                 <div class="stick-all">
@@ -222,7 +216,6 @@
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('Comments').addEventListener('submit', function(e) {
             e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
-
             const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
             const jsonFormData = Object.fromEntries(formData.entries());
 
@@ -235,7 +228,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
 
                 const komunikatDiv = document.getElementById("komunikat_z_serwera");
                 if (komunikatDiv) {
