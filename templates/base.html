@@ -26,16 +26,6 @@
             </div>
         </div>
         <div class="page">
-            <!-- Kod do wyświetlania flash messages -->
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                    <div class="toast-body alert alert-{{ category }}">
-                        {{ message }}
-                    </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
             <!--Header-->
             {% block body_header %}
             <header class="section page-header">
@@ -108,6 +98,16 @@
             
             {% endblock %}
             {% block footer %}
+            <!-- Kod do wyświetlania flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="toast-body alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <!--FOOTER-->
             <footer class="section">
                 <div class="container">
