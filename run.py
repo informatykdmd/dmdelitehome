@@ -461,7 +461,7 @@ def blogOne():
     for one_post in blog_post:
         if int(one_post['id']) == post_id_int:
             choiced = one_post
-
+    choiced['len'] = len(choiced['comments'])
     return render_template(
             'blog-one-pl.html', 
             blog_post_three=blog_post_three,
