@@ -183,12 +183,13 @@
     <div class="container">
         <h3 class="text-primary padding-top-standard">Komentuj Post</h3>
         <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-top-standard">
-            <form 
+            <!-- <form 
                 class="width-full" 
                 action="{{ url_for('addComm') }}" 
                 id="Comments" 
                 method="POST" 
-                enctype="multipart/form-data">
+                enctype="multipart/form-data"> -->
+            <form class="width-full" id="Comments">
 
                 <div class="stick-all">
                     <div class="form-floating mb-3 width-full">
@@ -206,13 +207,50 @@
                 </div>
                 <div class="margin-top-standard form-floating">
                     <input type="hidden" name="id" value="choiced['id']" />
-                    <button class="btn btn-primary btn-md button-primary font-button" type="submit">
+                    <button class="btn btn-primary btn-md button-primary font-button" type="submit" id="przycisk">
                         Komentuj Post<span class="insider"></span>
                     </button>
                 </div>
-                
+                <div id="komunikat_z_serwera"></div>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block bottom_script %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('Comments').addEventListener('submit', function(e) {
+            e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
+
+            const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
+            const jsonFormData = Object.fromEntries(formData.entries());
+
+            fetch('/add-comm-pl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonFormData) // Przekazuj dane z formularza
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+                const komunikatDiv = document.getElementById("komunikat_z_serwera");
+                if (komunikatDiv) {
+                    komunikatDiv.innerHTML = data.message;
+
+                    setTimeout(function() {
+                        komunikatDiv.innerHTML = '';
+                    }, 5000);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+    
 {% endblock %}
