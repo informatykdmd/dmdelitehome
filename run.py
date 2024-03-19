@@ -563,7 +563,7 @@ def addSubs():
             zapytanie_sql = '''
                     INSERT INTO newsletter 
                         (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH) 
-                        VALUES (%s, %s, %s);
+                        VALUES (%s, %s, %s, %s);
                     '''
             dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH)
             if msq.insert_to_database(zapytanie_sql, dane):
