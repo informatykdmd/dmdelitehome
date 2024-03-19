@@ -243,6 +243,10 @@
                     // Ustawienie koloru komunikatu na podstawie wartości 'success'
                     if(data.success) {
                         komunikatDiv.style.color = "green"; // Sukces - zielony
+
+                        setTimeout(function() { // Opóźnienie przed przeładowaniem, aby użytkownik zdążył zobaczyć komunikat
+                            window.location.reload();
+                        }, 1500);
                     } else {
                         komunikatDiv.style.color = "red"; // Niepowodzenie - czerwony
                     }
