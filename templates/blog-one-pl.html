@@ -243,7 +243,7 @@
                     // Ustawienie koloru komunikatu na podstawie wartości 'success'
                     if(data.success) {
                         komunikatDiv.style.color = "green"; // Sukces - zielony
-                        form.reset();
+                        document.getElementById('Comments').reset();
                         setTimeout(function() { // Opóźnienie przed przeładowaniem, aby użytkownik zdążył zobaczyć komunikat
                             window.location.reload();
                         }, 1500);
