@@ -156,28 +156,22 @@
 <div class="margin-top-standard">
     <div class="container">
         <h3 class="text-primary padding-top-standard">Komentarze</h3>
-        {% for comm in choiced['comments'].items() %}
-        {{comm}}
+        {% for comm in choiced['comments'].values() %}
         <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-left-65 margin-top-standard">
             <div class="padding-standard">
-                <img class="avatar" src="https://dmddomy.pl/images/team/tm-01-460x460-dariusz_dobrosielski.png" alt="" />
+                <img class="avatar" src="{{comm['avatar']}}" alt="" />
             </div>
             <div class="padding-standard width-full">
                 <div class="stick-all">
                     <div class="y-top font-title padding-top-small">
-                        <h5 class="normal">Dariusz Dobrosielski</h5>
+                        <h5 class="normal">{{comm['user']}}</h5>
                     </div>
                     <div class="margin-left-standard font-strong y-top">
-                        <p>8 marca 2024</p>
+                        <p>{{comm['data-time']}}</p>
                     </div>
                 </div>
                 <p>
-                    Zapisz się do naszego newslettera, aby regularnie otrzymywać na swoją skrzynkę e-mail 
-                    najświeższe informacje, wyjątkowe oferty oraz ekskluzywne zaproszenia na wydarzenia organizowane 
-                    przez DMD, co pozwoli Ci aktywnie komentować nasze posty na blogu!
-                    Zapisz się do naszego newslettera, aby regularnie otrzymywać na swoją skrzynkę e-mail 
-                    najświeższe informacje, wyjątkowe oferty oraz ekskluzywne zaproszenia na wydarzenia organizowane 
-                    przez DMD, co pozwoli Ci aktywnie komentować nasze posty na blogu!
+                    {{comm['message']}}
                 </p>
             </div>
         </div>
