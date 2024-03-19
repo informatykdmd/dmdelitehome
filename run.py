@@ -545,7 +545,6 @@ def addComm():
 @app.route('/add-subs-pl', methods=['POST'])
 def addSubs():
     subsList = generator_subsDataDB() # pobieranie danych subskrybentów
-    
     if request.method == 'POST':
         form_data = request.json
 
@@ -559,7 +558,6 @@ def addSubs():
                 allowed = False
 
         if allowed:
-            print(form_data)
             zapytanie_sql = '''
                     INSERT INTO newsletter 
                         (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH) 
@@ -600,5 +598,5 @@ def page_not_found(e):
     return redirect(url_for('indexPl'))
 
 if __name__ == '__main__':
-    # app.run(debug=True, port=3300)
+    # app.run(debug=True, port=3500)
     app.run(debug=True, host='0.0.0.0', port=3500)
