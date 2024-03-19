@@ -206,7 +206,7 @@
                     <label for="floatingTextarea2">Komentarz</label>
                 </div>
                 <div class="margin-top-standard form-floating">
-                    <input type="hidden" name="id" value="choiced['id']" />
+                    <input type="hidden" name="id" value="{{choiced['id']}}" />
                     <button class="btn btn-primary btn-md button-primary font-button" type="submit" id="przycisk">
                         Komentuj Post<span class="insider"></span>
                     </button>
@@ -240,7 +240,12 @@
                 const komunikatDiv = document.getElementById("komunikat_z_serwera");
                 if (komunikatDiv) {
                     komunikatDiv.innerHTML = data.message;
-
+                    // Ustawienie koloru komunikatu na podstawie wartości 'success'
+                    if(data.success) {
+                        komunikatDiv.style.color = "green"; // Sukces - zielony
+                    } else {
+                        komunikatDiv.style.color = "red"; // Niepowodzenie - czerwony
+                    }
                     setTimeout(function() {
                         komunikatDiv.innerHTML = '';
                     }, 5000);
