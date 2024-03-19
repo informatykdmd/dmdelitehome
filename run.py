@@ -528,7 +528,7 @@ def addComm():
                 SUB_ID = subscriber['id']
                 break
         if allowed and SUB_ID:
-            print(form_data)
+            # print(form_data)
             zapytanie_sql = '''
                     INSERT INTO comments 
                         (BLOG_POST_ID, COMMENT_CONNTENT, AUTHOR_OF_COMMENT_ID) 
@@ -545,12 +545,44 @@ def addComm():
 @app.route('/add-subs-pl', methods=['POST'])
 def addSubs():
     subsList = generator_subsDataDB() # pobieranie danych subskrybentów
-
+    
     if request.method == 'POST':
         form_data = request.json
-        print(form_data)
-        return jsonify({'success': True, 'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'})
-    return jsonify({'success': False, 'message': f'błąd!'})
+
+        SUB_NAME = form_data['Imie']
+        SUB_EMAIL = form_data['Email']
+        USER_HASH = secrets.token_hex(20)
+
+        allowed = True
+        for subscriber in subsList:
+            if subscriber['email'] == SUB_EMAIL:
+                allowed = False
+
+        if allowed:
+            print(form_data)
+            zapytanie_sql = '''
+                    INSERT INTO newsletter 
+                        (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH) 
+                        VALUES (%s, %s, %s);
+                    '''
+            dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH)
+            if msq.insert_to_database(zapytanie_sql, dane):
+                return jsonify(
+                    {
+                        'success': True, 
+                        'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'
+                    })
+        else:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Podany adres email jest już zarejestrowany!'
+                })
+        
+    return redirect(url_for('indexPl'))
+        
+    
+    
 
 @app.route('/pl')
 def langPl():
