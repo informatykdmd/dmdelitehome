@@ -183,20 +183,25 @@
     <div class="container">
         <h3 class="text-primary padding-top-standard">Komentuj Post</h3>
         <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-top-standard">
-            <form class="width-full">
+            <form 
+                class="width-full" 
+                action="{{ url_for('addComm') }}" 
+                id="Comments" 
+                method="POST" 
+                enctype="multipart/form-data">
 
                 <div class="stick-all">
                     <div class="form-floating mb-3 width-full">
-                        <input type="text" class="form-control " id="floatingInput" placeholder="Imię i nazwisko" required>
+                        <input type="text" class="form-control" name="Name" id="floatingInput" placeholder="Imię i nazwisko" required>
                         <label for="floatingInput">Imię i nazwisko</label>
                     </div>
                     <div class="form-floating mb-3 width-full margin-left-standard">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                        <input type="email" class="form-control" name="Email" id="floatingInput" placeholder="name@example.com" required>
                         <label for="floatingInput">Adres E-mail</label>
                     </div>
                 </div>
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" required></textarea>
+                    <textarea class="form-control" placeholder="Leave a comment here" name="Comment" id="floatingTextarea2" style="height: 100px" required></textarea>
                     <label for="floatingTextarea2">Komentarz</label>
                 </div>
                 <div class="margin-top-standard form-floating">
