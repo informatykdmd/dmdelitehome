@@ -156,7 +156,7 @@
 <div class="margin-top-standard">
     <div class="container">
         <h3 class="text-primary padding-top-standard">Komentarze</h3>
-        {% for comm in choiced['comments']%}
+        {% for comm in choiced['comments'].items() %}
         {{comm}}
         <div class="stick-all shadow-sm p-3 mb-5 bg-body-tertiary rounded margin-left-65 margin-top-standard">
             <div class="padding-standard">
