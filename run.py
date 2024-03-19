@@ -433,8 +433,22 @@ def blogFull():
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
+
+    # Wczytanie listy wszystkich postów z bazy danych i przypisanie jej do zmiennej posts
+    blog_post = generator_daneDBList()
+
+    # Ustawienia paginacji
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+    total = len(blog_post)
+    pagination = Pagination(page=page, per_page=per_page, total=total, css_framework='bootstrap4')
+
+    # Pobierz tylko odpowiednią ilość postów na aktualnej stronie
+    posts = blog_post[offset: offset + per_page]
+
     return render_template(
-            'blog-full-pl.html', 
+            'blog-full-pl.html',
+            posts=posts, 
+            pagination=pagination,
             blog_post_three=blog_post_three)
 
 @app.route('/blog-one-pl', methods=['GET'])

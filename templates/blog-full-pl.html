@@ -5,120 +5,36 @@
 <section class="section well-2 well-2--inset-1 text-xs-center">
     <div class="container">
         <div class="row row-60">
+            {% for post_data in posts %}
             <div class="col-lg-4 col-md-8 col-sm-12">
-                <img src="https://dmddomy.pl/images/blog/bl-00-1920x750-WillaMiejska.png" alt=""/>
+                <img src="{{post_data['mainFoto']}}" alt=""/>
                 <span class="font-strong">
-                    Willa Miejska na Starych Bielanach: Nowoczesna Rezydencja z Wyjątkowym Dychem Miejskiego Życia
+                    {{post_data['title']}}
                 </span><br />
-                <span class="font-category">Architektura i Design</span>
+                <span class="font-category">{{post_data['category']}}</span>
                 <span class="normal"><br />
-                    Willa Miejska nie jest tylko domem; to manifest nowoczesności i estetyki, z którego są dumni 
-                    zarówno mieszkańcy, jak i twórcy tego wyjątkowego projektu. DMD EliteHome, lider na rynku 
-                    budowlanym, jest dumny z roli, jaką odegrał w realizacji Willi Miejskiej. Zapewniając najwyższą 
-                    jakość i zgodność z najnowszymi trendami, firma ta kontynuuje swoją misję redefiniowania standardów w branży.
+                    {{post_data['highlight']}}
+                    
                 </span>
-                <p class="font-strong-small">Michał - 20 lutego 2024</p>
-                <a href="blog_page_one_post.html">Czytaj więcej</a>
+                <p class="font-strong-small">{{post_data['author']}} - {{post_data['data']}}</p>
+                <a href="http://dmddomy.pl:3500/blog-one-pl?post={{post_data['id']}}">Czytaj więcej</a>
             </div>
-            <div class="col-lg-4 col-md-8 col-sm-12">
-                <img src="https://dmddomy.pl/images/blog/bl-00-1920x750-WillaMiejska.png" alt=""/>
-                <span class="font-strong">
-                    Willa Miejska na Starych Bielanach: Nowoczesna Rezydencja z Wyjątkowym Dychem Miejskiego Życia
-                </span><br />
-                <span class="font-category">Architektura i Design</span>
-                <span class="normal"><br />
-                    Willa Miejska nie jest tylko domem; to manifest nowoczesności i estetyki, z którego są dumni 
-                    zarówno mieszkańcy, jak i twórcy tego wyjątkowego projektu. DMD EliteHome, lider na rynku 
-                    budowlanym, jest dumny z roli, jaką odegrał w realizacji Willi Miejskiej. Zapewniając najwyższą 
-                    jakość i zgodność z najnowszymi trendami, firma ta kontynuuje swoją misję redefiniowania standardów w branży.
-                </span>
-                <p class="font-strong-small">Michał - 20 lutego 2024</p>
-                <a href="#">Czytaj więcej</a>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-12">
-                <img src="https://dmddomy.pl/images/blog/bl-00-1920x750-WillaMiejska.png" alt=""/>
-                <span class="font-strong">
-                    Willa Miejska na Starych Bielanach: Nowoczesna Rezydencja z Wyjątkowym Dychem Miejskiego Życia
-                </span><br />
-                <span class="font-category">Architektura i Design</span>
-                <span class="normal"><br />
-                    Willa Miejska nie jest tylko domem; to manifest nowoczesności i estetyki, z którego są dumni 
-                    zarówno mieszkańcy, jak i twórcy tego wyjątkowego projektu. DMD EliteHome, lider na rynku 
-                    budowlanym, jest dumny z roli, jaką odegrał w realizacji Willi Miejskiej. Zapewniając najwyższą 
-                    jakość i zgodność z najnowszymi trendami, firma ta kontynuuje swoją misję redefiniowania standardów w branży.
-                </span>
-                <p class="font-strong-small">Michał - 20 lutego 2024</p>
-                <a href="#">Czytaj więcej</a>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-12">
-                <img src="https://dmddomy.pl/images/blog/bl-00-1920x750-WillaMiejska.png" alt=""/>
-                <span class="font-strong">
-                    Willa Miejska na Starych Bielanach: Nowoczesna Rezydencja z Wyjątkowym Dychem Miejskiego Życia
-                </span><br />
-                <span class="font-category">Architektura i Design</span>
-                <span class="normal"><br />
-                    Willa Miejska nie jest tylko domem; to manifest nowoczesności i estetyki, z którego są dumni 
-                    zarówno mieszkańcy, jak i twórcy tego wyjątkowego projektu. DMD EliteHome, lider na rynku 
-                    budowlanym, jest dumny z roli, jaką odegrał w realizacji Willi Miejskiej. Zapewniając najwyższą 
-                    jakość i zgodność z najnowszymi trendami, firma ta kontynuuje swoją misję redefiniowania standardów w branży.
-                </span>
-                <p class="font-strong-small">Michał - 20 lutego 2024</p>
-                <a href="#">Czytaj więcej</a>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-12">
-                <img src="https://dmddomy.pl/images/blog/bl-00-1920x750-WillaMiejska.png" alt=""/>
-                <span class="font-strong">
-                    Willa Miejska na Starych Bielanach: Nowoczesna Rezydencja z Wyjątkowym Dychem Miejskiego Życia
-                </span><br />
-                <span class="font-category">Architektura i Design</span>
-                <span class="normal"><br />
-                    Willa Miejska nie jest tylko domem; to manifest nowoczesności i estetyki, z którego są dumni 
-                    zarówno mieszkańcy, jak i twórcy tego wyjątkowego projektu. DMD EliteHome, lider na rynku 
-                    budowlanym, jest dumny z roli, jaką odegrał w realizacji Willi Miejskiej. Zapewniając najwyższą 
-                    jakość i zgodność z najnowszymi trendami, firma ta kontynuuje swoją misję redefiniowania standardów w branży.
-                </span>
-                <p class="font-strong-small">Michał - 20 lutego 2024</p>
-                <a href="#">Czytaj więcej</a>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-12">
-                <img src="https://dmddomy.pl/images/blog/bl-00-1920x750-WillaMiejska.png" alt=""/>
-                <span class="font-strong">
-                    Willa Miejska na Starych Bielanach: Nowoczesna Rezydencja z Wyjątkowym Dychem Miejskiego Życia
-                </span><br />
-                <span class="font-category">Architektura i Design</span>
-                <span class="normal"><br />
-                    Willa Miejska nie jest tylko domem; to manifest nowoczesności i estetyki, z którego są dumni 
-                    zarówno mieszkańcy, jak i twórcy tego wyjątkowego projektu. DMD EliteHome, lider na rynku 
-                    budowlanym, jest dumny z roli, jaką odegrał w realizacji Willi Miejskiej. Zapewniając najwyższą 
-                    jakość i zgodność z najnowszymi trendami, firma ta kontynuuje swoją misję redefiniowania standardów w branży.
-                </span>
-                <p class="font-strong-small">Michał - 20 lutego 2024</p>
-                <a href="#">Czytaj więcej</a>
-            </div>
+            {% endfor %}
         </div>
 
       
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center padding-top-standard margin-top-big">
         <ul class="inline-list">
             <li class="pagination-item font-small">
-                <a disabled href="/blog-posts-fullwidth">
-                    <i class="fa fa-angle-left text-normal"></i>
-                </a>
+                {{ pagination.prev }}
+                <i class="fa fa-angle-left text-normal"></i>
             </li>
             <li class="pagination-item font-small">
-                <a href="/blog-posts-fullwidth">
-                    1
-                </a>
+                {{ pagination.links }}
             </li>
             <li class="pagination-item font-small">
-                <a href="/blog-posts-fullwidth">
-                    2
-                </a>
-            </li>
-            <li class="pagination-item font-small">
-                <a href="/blog-posts-fullwidth">
+                {{ pagination.next }}
                     <i class="fa fa-angle-right text-normal"></i>
-                </a>
             </li>
         </ul>
       </div>
