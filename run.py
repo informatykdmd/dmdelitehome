@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired
 from werkzeug.utils import secure_filename
 import mysqlDB as msq
 import secrets
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -26,6 +27,29 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 ###    ######    ######     ###
 ###############################
 
+def format_date(date_string, pl=True):
+
+    ang_pol = {
+        'January': 'styczeń',
+        'February': 'luty',
+        'March': 'marzec',
+        'April': 'kwiecień',
+        'May': 'maj',
+        'June': 'czerwiec',
+        'July': 'lipiec',
+        'August': 'sierpień',
+        'September': 'wrzesień',
+        'October': 'październik',
+        'November': 'listopad',
+        'December': 'grudzień'
+    }
+    date_object = datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S')
+    formatted_date = date_object.strftime('%d %B %Y')
+    if pl:
+        for en, pl in ang_pol.items():
+            formatted_date = formatted_date.replace(en, pl)
+
+    return formatted_date
 
 #  Funkcja pobiera dane z bazy danych 
 def take_data_where_ID(key, table, id_name, ID):
@@ -101,7 +125,7 @@ def generator_daneDBList():
             comments_dict[i]['message'] = com[2]
             comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['data-time'] = com[4]
+            comments_dict[i]['data-time'] = format_date(com[4])
             
         theme = {
             'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
@@ -113,8 +137,15 @@ def generator_daneDBList():
             'additionalList': take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0],
             'tags': take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0],
             'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0],
-            'data': take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0],
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]),
             'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+
+            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0],
+            'author_avatar': take_data_where_ID('AVATAR_AUTHOR', 'authors', 'ID', id_author)[0][0],
+            'author_facebook': take_data_where_ID('FACEBOOK', 'authors', 'ID', id_author)[0][0],
+            'author_twitter': take_data_where_ID('TWITER_X', 'authors', 'ID', id_author)[0][0],
+            'author_instagram': take_data_where_ID('INSTAGRAM', 'authors', 'ID', id_author)[0][0],
+
             'comments': comments_dict
         }
         daneList.append(theme)
