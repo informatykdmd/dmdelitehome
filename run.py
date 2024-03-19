@@ -520,8 +520,13 @@ def contact():
 def sendMess():
     return redirect(url_for('indexPl'))
 
-@app.route('/add-comm-pl')
+@app.route('/add-comm-pl', methods=['POST'])
 def addComm():
+    
+    if request.method == 'POST':
+        form_data = request.form.to_dict()
+        print(form_data)
+
     return redirect(url_for('indexPl'))
 
 @app.route('/add-subs-pl')
