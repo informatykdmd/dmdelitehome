@@ -49,29 +49,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 wow fadeInUp">
-                {{choiced['additionalList']}}
+                <!-- {{choiced['additionalList']}} -->
                 <ul>
+                    {% for point in choiced['additionalList'] %}
                     <li class="margin-top-standard">
-                        Siła i determinacja: Dzień Kobiet to idealny moment, aby docenić siłę i determinację kobiet, 
-                        które na przestrzeni dziejów przełamywały bariery i torowały drogę do równouprawnienia. 
-                        Nie sposób wymienić wszystkich, ale warto wspomnieć o takich ikonicznych postaciach jak 
-                        Marie Curie, Emmeline Pankhurst, Malala Yousafzai czy Irena Sendlerowa. Ich odwaga 
-                        i zaangażowanie inspirują miliony ludzi na całym świecie.
+                        {{point}}
                     </li>
-                    <li class="margin-top-standard">
-                        Siła i determinacja: Dzień Kobiet to idealny moment, aby docenić siłę i determinację kobiet, 
-                        które na przestrzeni dziejów przełamywały bariery i torowały drogę do równouprawnienia. 
-                        Nie sposób wymienić wszystkich, ale warto wspomnieć o takich ikonicznych postaciach jak 
-                        Marie Curie, Emmeline Pankhurst, Malala Yousafzai czy Irena Sendlerowa. Ich odwaga 
-                        i zaangażowanie inspirują miliony ludzi na całym świecie.
-                    </li>
-                    <li class="margin-top-standard">
-                        Siła i determinacja: Dzień Kobiet to idealny moment, aby docenić siłę i determinację kobiet, 
-                        które na przestrzeni dziejów przełamywały bariery i torowały drogę do równouprawnienia. 
-                        Nie sposób wymienić wszystkich, ale warto wspomnieć o takich ikonicznych postaciach jak 
-                        Marie Curie, Emmeline Pankhurst, Malala Yousafzai czy Irena Sendlerowa. Ich odwaga 
-                        i zaangażowanie inspirują miliony ludzi na całym świecie.
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-lg-4 col-md-4 margin-top-standard">
@@ -88,23 +72,11 @@
       <div class="row">            
         <div class="col-lg-8 col-md-8 col-sm-12 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
             <h2 class="small margin-top-standard">TAGI:</h2>
-            {{choiced['tags']}}
+            
             <ul class="inline-list">
-                <li><a href="#">Inbound Operators</a></li>
-                <li><a href="#">Travel Agents</a></li>
-                <li><a href="#">Corporations</a></li>
-                <li><a href="#">Conferences </a></li>
-                <li><a href="#">Incentive Groups</a></li>
-                <li><a href="#">Inbound </a></li>
-                <li><a href="#">Travel </a></li>
-                <li><a href="#">Corporations</a></li>
-                <li><a href="#">Conferences </a></li>
-                <li><a href="#">Incentive </a></li>
-                <li><a href="#">Inbound </a></li>
-                <li><a href="#">Travel </a></li>
-                <li><a href="#">Corporations</a></li>
-                <li><a href="#">Conferences </a></li>
-                <li><a href="#">Incentive </a></li>
+                {% for tag in choiced['tags'] %}
+                <li><a href="#">{{tag}}</a></li>
+                {% endfor %}
             </ul>
         </div>
         
