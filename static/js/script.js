@@ -41,7 +41,8 @@
 		};
 
 	$window.on('load', function () {
-		if (plugins.preloader.length && !isNoviBuilder) {
+		// plugins.preloader.length && !isNoviBuilder
+		if (1 == 1) {
 			pageTransition({
 				target: document.querySelector( '.page' ),
 				delay: 0,
@@ -55,7 +56,7 @@
 				onTransitionStart: function ( options ) {
 					setTimeout( function () {
 						plugins.preloader.removeClass('loaded');
-					}, options.duration * 4 );
+					}, options.duration * .75 );
 				},
 				onReady: function () {
 					plugins.preloader.addClass('loaded');
