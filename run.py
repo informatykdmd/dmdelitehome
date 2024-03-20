@@ -528,6 +528,24 @@ def sendMess():
         CLIENT_EMAIL = form_data['email']
         CLIENT_MESSAGE = form_data['message']
         # print(form_data)
+        if CLIENT_NAME == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać swoje Imię i Nazwisko!'
+                })
+        if CLIENT_SUBJECT == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać temat wiadomości!'
+                })
+        if CLIENT_EMAIL == '' or '@' not in CLIENT_EMAIL or '.' not in CLIENT_EMAIL or len(CLIENT_EMAIL) < 7:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać adres email!'
+                })
         zapytanie_sql = '''
                 INSERT INTO contact 
                     (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
