@@ -55,7 +55,7 @@
 				onTransitionStart: function ( options ) {
 					setTimeout( function () {
 						plugins.preloader.removeClass('loaded');
-					}, options.duration * .75 );
+					}, options.duration * 2 );
 				},
 				onReady: function () {
 					plugins.preloader.addClass('loaded');
