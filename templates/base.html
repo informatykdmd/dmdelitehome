@@ -25,6 +25,11 @@
                 <p>Loading...</p>
             </div>
         </div>
+        <script>
+            window.onload = function() {
+                document.querySelector('.preloader').classList.add('loaded');
+            };
+        </script>
         <div class="page">
             <!--Header-->
             {% block body_header %}
@@ -234,10 +239,6 @@
             });
         });
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelector('.preloader').classList.add('loaded');
-        });
-    </script>
+    
     </body>
 </html>
