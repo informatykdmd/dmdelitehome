@@ -27,7 +27,7 @@
         <ul class="inline-list">
         {% if pagination.has_prev %}
             <li class="pagination-item font-small">
-                <a href="{{ url_for(request.endpoint, page=pagination.page + 1) }}">
+                <a href="{{ url_for(request.endpoint, page=pagination.page - 1) }}">
                     <i class="fa fa-angle-left text-normal"></i>
                 </a>
             </li>
