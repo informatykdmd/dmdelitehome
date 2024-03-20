@@ -92,10 +92,10 @@
                     komunikatDiv.innerHTML = data.message;
                     // Ustawienie koloru komunikatu na podstawie wartości 'success'
                     if(data.success) {
-                        komunikatDiv.style.color = "green"; // Sukces - zielony
+                        komunikatDiv.style.color = "#30ff00"; // Sukces - zielony
                         document.getElementById('contact_form').reset();
                     } else {
-                        komunikatDiv.style.color = "red"; // Niepowodzenie - czerwony
+                        komunikatDiv.style.color = "#ff3535"; // Niepowodzenie - czerwony
                     }
                     setTimeout(function() {
                         komunikatDiv.innerHTML = '';
