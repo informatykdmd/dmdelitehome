@@ -521,6 +521,9 @@ def contact():
 
 @app.route('/send-mess-pl')
 def sendMess():
+    if request.method == 'POST':
+        form_data = request.json
+        print(form_data)
     return redirect(url_for('indexPl'))
 
 @app.route('/add-comm-pl', methods=['POST'])

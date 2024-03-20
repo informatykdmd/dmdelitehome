@@ -32,7 +32,7 @@
 <div class="parallax-content">
     <div class="container">
     <h3 class="text-default text-xs-center">Formularz<br><span class="normal">Kontaktowy</span></h3>
-    <form class="rd-mailform mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+    <form class="rd-mailform mailform" data-form-output="form-output-global" data-form-type="contact" id="contact_form">
         <div class="row">
         <div class="col-xl-4 col-lg-4 col-md-4">
             <div class="form-wrap">
@@ -59,11 +59,56 @@
             </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12">
-            <button class="button btn-md button-primary" type="submit">Wyślij Wiadomość<span class="insider"></span></button>
+            <button id="send_contact" class="button btn-md button-primary" type="submit">Wyślij Wiadomość<span class="insider"></span></button>
         </div>
+        <div class="margin-top-standard" id="komunikat_z_serwera"></div>
         </div>
     </form>
     </div>
 </div>
 </section>
+{% endblock %}
+{% block bottom_script %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('contact_form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
+            const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
+            const jsonFormData = Object.fromEntries(formData.entries());
+
+            fetch('/send-mess-pl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonFormData) // Przekazuj dane z formularza
+            })
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data);
+
+                const komunikatDiv = document.getElementById("komunikat_z_serwera");
+                if (komunikatDiv) {
+                    komunikatDiv.innerHTML = data.message;
+                    // Ustawienie koloru komunikatu na podstawie wartości 'success'
+                    if(data.success) {
+                        komunikatDiv.style.color = "green"; // Sukces - zielony
+                        document.getElementById('contact_form').reset();
+                        setTimeout(function() { // Opóźnienie przed przeładowaniem, aby użytkownik zdążył zobaczyć komunikat
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        komunikatDiv.style.color = "red"; // Niepowodzenie - czerwony
+                    }
+                    setTimeout(function() {
+                        komunikatDiv.innerHTML = '';
+                    }, 5000);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
 {% endblock %}
