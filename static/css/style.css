@@ -21443,6 +21443,20 @@ html.rd-navbar-fixed-linked .page {
 	background-color: #151515 ; /* Kolor podświetlenia */
 	color: #FFFFFF !important; /* Kolor tekstu po podświetleniu */
   }
+.pagination-item-off {
+	border: #636464 solid 1px;
+	width: 30px;
+	height: 30px;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	font-style: normal !important;
+	color: #636464 !important;
+}
+.pagination-item-off:hover {
+	border: #636464 solid 1px;
+	color: #636464 !important;
+  }
 
 .bg-img-dune-1 {
 	background-image: url("../images/dune_paralax_1.jpg");

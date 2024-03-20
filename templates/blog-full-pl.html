@@ -27,12 +27,12 @@
         <ul class="inline-list">
         {% if pagination.has_prev %}
             <li class="pagination-item font-small">
-                <a href="{{ url_for(request.endpoint, page=pagination.prev_num) }}">
+                <a href="{{ url_for(request.endpoint, page=pagination.page + 1) }}">
                     <i class="fa fa-angle-left text-normal"></i>
                 </a>
             </li>
         {% else %}
-            <li class="pagination-item font-small">
+            <li class="pagination-item-off font-small">
                 <i class="fa fa-angle-left text-normal"></i>
             </li>
         {% endif %}
@@ -45,7 +45,7 @@
                         </a>
                     </li>
                 {% else %}
-                    <li class="pagination-item font-small">
+                    <li class="pagination-item-off font-small">
                         {{ page }}
                     </li>
                 {% endif %}
@@ -60,7 +60,7 @@
                 </a>                
             </li>
         {% else %}
-            <li class="pagination-item font-small">
+            <li class="pagination-item-off font-small">
                 <i class="fa fa-angle-right text-normal"></i>
             </li>
         {% endif %}
