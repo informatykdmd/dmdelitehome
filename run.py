@@ -530,7 +530,7 @@ def sendMess():
         # print(form_data)
         zapytanie_sql = '''
                 INSERT INTO contact 
-                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, CLIENT_MESSAGE, DONE) 
+                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
                     VALUES (%s, %s, %s, %s, %s);
                 '''
         dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
