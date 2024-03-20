@@ -546,6 +546,12 @@ def sendMess():
                     'success': False, 
                     'message': f'Musisz podać adres email!'
                 })
+        if CLIENT_MESSAGE == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać temat wiadomości!'
+                })
         zapytanie_sql = '''
                 INSERT INTO contact 
                     (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
