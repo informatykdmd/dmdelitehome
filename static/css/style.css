@@ -10283,7 +10283,7 @@ html p a:hover {
 } */
 .page.fadeOut {
 	animation-name: fadeOut;
-	animation-duration: 1s; /* Czas trwania animacji */
+	animation-duration: 10s; /* Czas trwania animacji */
 	animation-fill-mode: forwards; /* Pozostawia element w stanie końcowym animacji */
   }
 
