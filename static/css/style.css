@@ -10290,6 +10290,7 @@ html p a:hover {
 	animation-name: fadeOut;
 	animation-duration: 1s; 
 	animation-fill-mode: forwards; 
+	opacity: 0;
 }
 
 [data-x-mode] .page {
