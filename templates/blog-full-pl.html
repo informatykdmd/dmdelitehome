@@ -97,8 +97,9 @@
         {% endfor %}
         {% if pagination.has_next %}
             <li class="pagination-item font-small">
-                {{ pagination.next }}
+                <a href="{{ pagination.next_page }}">
                     <i class="fa fa-angle-right text-normal"></i>
+                </a>                
             </li>
         {% else %}
             <li class="page-item disabled"></li>
