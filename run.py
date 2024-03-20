@@ -550,7 +550,7 @@ def sendMess():
             return jsonify(
                 {
                     'success': False, 
-                    'message': f'Musisz podać temat wiadomości!'
+                    'message': f'Musisz podać treść wiadomości!'
                 })
         zapytanie_sql = '''
                 INSERT INTO contact 
