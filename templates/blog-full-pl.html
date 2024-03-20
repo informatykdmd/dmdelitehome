@@ -33,9 +33,7 @@
             </li>
         {% else %}
             <li class="pagination-item font-small">
-                <a href="#">
-                    <i class="fa fa-angle-left text-normal"></i>
-                </a>
+                <i class="fa fa-angle-left text-normal"></i>
             </li>
         {% endif %}
         {% for page in pagination.pages %}
@@ -48,9 +46,7 @@
                     </li>
                 {% else %}
                     <li class="pagination-item font-small">
-                        <a href="#" style="color: grey;">
-                            {{ page }}
-                        </a>
+                        {{ page }}
                     </li>
                 {% endif %}
             {% else %}
@@ -65,9 +61,7 @@
             </li>
         {% else %}
             <li class="pagination-item font-small">
-                <a href="#">
-                    <i class="fa fa-angle-right text-normal"></i>
-                </a>                
+                <i class="fa fa-angle-right text-normal"></i>
             </li>
         {% endif %}
         </ul>
