@@ -42,7 +42,7 @@
 
 	$window.on('load', function () {
 		// plugins.preloader.length && !isNoviBuilder
-		if (1 == 1) {
+		if (1 == 2) {
 			pageTransition({
 				target: document.querySelector( '.page' ),
 				delay: 0,
