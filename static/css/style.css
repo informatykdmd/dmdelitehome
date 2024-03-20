@@ -10278,14 +10278,14 @@ html p a:hover {
 	animation-timing-function: ease-out;
 }
 
-/* .page.fadeOut {
-	animation-timing-function: ease-in;
-} */
 .page.fadeOut {
+	animation-timing-function: ease-in;
+}
+/* .page.fadeOut {
 	animation-name: fadeOut;
-	animation-duration: 10s; /* Czas trwania animacji */
-	animation-fill-mode: forwards; /* Pozostawia element w stanie końcowym animacji */
-  }
+	animation-duration: 1s; 
+	animation-fill-mode: forwards; 
+} */
 
 [data-x-mode] .page {
 	opacity: 1;
