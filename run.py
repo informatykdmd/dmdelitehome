@@ -519,7 +519,7 @@ def contact():
 ############################
 
 
-@app.route('/send-mess-pl')
+@app.route('/send-mess-pl', methods=['POST'])
 def sendMess():
     if request.method == 'POST':
         form_data = request.json
