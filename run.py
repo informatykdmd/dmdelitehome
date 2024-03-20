@@ -185,7 +185,7 @@ def indexPl():
             if  i < 3: blog_post_three.append(member)
 
         return render_template(
-            'index-pl-2.html', 
+            'index-pl.html', 
             fourListTeam=fourListTeam, 
             blog_post_three=blog_post_three
             )
