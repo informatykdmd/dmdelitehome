@@ -41,8 +41,8 @@
 		};
 
 	$window.on('load', function () {
-		// plugins.preloader.length && !isNoviBuilder
-		if (1 == 2) {
+		// 
+		if (plugins.preloader.length && !isNoviBuilder) {
 			pageTransition({
 				target: document.querySelector( '.page' ),
 				delay: 0,
