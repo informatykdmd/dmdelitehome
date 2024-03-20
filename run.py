@@ -523,7 +523,25 @@ def contact():
 def sendMess():
     if request.method == 'POST':
         form_data = request.json
-        print(form_data)
+        CLIENT_NAME = form_data['name']
+        CLIENT_SUBJECT = form_data['subject']
+        CLIENT_EMAIL = form_data['email']
+        CLIENT_MESSAGE = form_data['message']
+        # print(form_data)
+        zapytanie_sql = '''
+                INSERT INTO contact 
+                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, CLIENT_MESSAGE, DONE) 
+                    VALUES (%s, %s, %s, %s, %s);
+                '''
+        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+        if msq.insert_to_database(zapytanie_sql, dane):
+            return jsonify({'success': True, 'message': f'Wiadomość została wysłana!'})
+        else:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Wystąpił problem z wysłaniem Twojej wiadomości, skontaktuj się w inny sposób lub spróbuj później!'
+                })
     return redirect(url_for('indexPl'))
 
 @app.route('/add-comm-pl', methods=['POST'])
