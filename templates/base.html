@@ -193,8 +193,8 @@
             {% endblock %}
         </div>
         <div class="snackbars" id="form-output-global"></div>
-	<!-- <script src="static/js/core.min.js"></script>
-	<script src="static/js/script.js"></script> -->
+	<script src="static/js/core.min.js"></script>
+	<!-- <script src="static/js/script.js"></script> -->
     {% block bottom_script %}{% endblock %}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -235,6 +235,10 @@
             });
         });
     </script>
-    
+    <script>
+        window.onload = function() {
+            document.querySelector('.preloader').classList.add('loaded');
+        };
+    </script>
     </body>
 </html>
