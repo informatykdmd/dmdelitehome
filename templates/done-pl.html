@@ -1,32 +1,8 @@
-<!DOCTYPE html>
-<html class="wide wow-animation" lang="en">
-    <head>
-        <title>DMD ELITEHOME - Realizacje</title>
-        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% extends 'base.html' %}
 
-        <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:300,400,500,700,800,900%7CMontserrat:400">
-        <link rel="stylesheet" href="static/css/bootstrap.css">
-        <link rel="stylesheet" href="static/css/fonts.css">
-        <link rel="stylesheet" href="static/css/style.css">
+{% block title %}DMD ELITEHOME - Dune House {% endblock %}
 
-    </head>
-    <body>
-        <!-- Page Preloader -->
-        <div class="preloader">
-            <div class="preloader-body">
-                <div class="cssload-container">
-                    <div class="cssload-speeding-wheel"></div>
-                </div>
-                <p>Loading...</p>
-            </div>
-        </div>
-        <div><!-- class="page" -->
-
-
+{% block body_header %}
 <header class="section page-header">
     <!--RD Navbar-->
     <div class="rd-navbar-wrap">
@@ -92,7 +68,8 @@
         </nav>
     </div>
 </header>
-
+{% endblock %}
+{% block content %}
 <!--HOTELS, CLUBS & COMMUNITY-->
 <section class="section bg-fixed bg-img-dune-3">
     <div class="container">
@@ -236,135 +213,4 @@
         </div>
     </div>
 </section>
-
-
-<!--FOOTER-->
-<footer class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-3">
-                <div class="footer-info">
-                    <img src="static/images/logo-inverse-271x37.png" alt="logo" />
-                    <p>
-                        <i class="fa fa-phone"></i>
-                        <a class="link-white" href="tel:+48736545454">&nbsp;&nbsp;+48 736 54 54 54</a>
-                    </p>
-                    <p>
-                        <i class="fa fa-envelope"></i><a class="link-white" href="mailto:biuro@dmdelitehome.pl">&nbsp;&nbsp;biuro@dmdelitehome.pl</a>
-                    </p>
-                    <p class="footer-newsletter">ul. Dworkowa 51 <br />05-082 Stare Babice</p>
-                    <p>
-                        Pracujemy: <br />
-                        <span class="footer-newsletter">Poniedziałek - Piątek <br />
-                        9:00 - 17:00<br /></span>
-                    </p>
-                    <ul class="inline-list">
-                        <li><a class="link-white icon fa fa-facebook" href="https://www.facebook.com/dmddomy/" target="_blank"></a></li>
-                        <li><a class="link-white icon fa fa-youtube" href="https://www.youtube.com/channel/UCBRN-SPMEIYK6YRV23Komxw" target="_blank"></a></li>
-                        <li><a class="link-white icon fa fa-instagram" href="https://www.instagram.com/dmddomy/" target="_blank"></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="footer-info">
-                    <h3>Blog</h3>
-                    <hr />
-                    <ul class="list-unstyled">
-                        {% for post in blog_post_three %}
-                        <li class="rd-nav-item margin-top-standard">
-                            <h5 class="strong">
-                                <a href="/blog-one-pl?post={{post['id']}}">{{post['title']}}</a>
-                            </h5>
-                            <div class="font-category">{{post['category']}}</div>
-                            <div class="footer-desc"><i class="fa fa-user"></i> {{post['author']}} <i class="fa fa-calendar"></i> {{post['data']}}</div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-5">
-                <div class="footer-info">
-                    <h3>Nasz Newsletter</h3>
-                    <hr />
-                    <p class="footer-newsletter">
-                        Zapisz się do naszego newslettera, aby regularnie otrzymywać na swoją skrzynkę e-mail 
-                        najświeższe informacje, wyjątkowe oferty oraz ekskluzywne zaproszenia na wydarzenia 
-                        organizowane przez DMD, co pozwoli Ci aktywnie komentować nasze posty na blogu!
-                    </p>
-                    <form class="width-full" id="newsletter_form">
-                        <div class="stick-all">
-                            <div>
-                                <input class="footer-newsletter-form" type="text" placeholder="Podaj swoje Imię" id="newsletterEmailField" name="Imie" required/>
-                            </div>
-                            <div>
-                                <input class="footer-newsletter-form margin-left-small width-full" type="email" placeholder="Podaj swój E-mail" id="newsletterEmailField" name="Email" required/>
-                            </div>
-                        </div>
-                        <div class="padding-top-standard">
-                            <button type="submit" class="btn btn-primary" id="send_newsletter">
-                                Zapisz się
-                            </button>
-                        </div>
-                        <div class="margin-top-standard" id="komunikat_z_serwera_newsletter"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="copyright padding-y-standard">
-            DMD ELITEHOME ©<span>&nbsp;</span><span class="copyright-year"></span><span>.&nbsp;</span>
-            <a class="link-white" href="/privacy-pl">Polityka prywatności</a>
-        </div>
-    </div>
-</footer>
-
-</div>
-<div class="snackbars" id="form-output-global"></div>
-<script src="static/js/core.min.js"></script>
-<script src="static/js/script.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-document.getElementById('newsletter_form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
-    const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
-    const jsonFormData = Object.fromEntries(formData.entries());
-
-    fetch('/add-subs-pl', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(jsonFormData) // Przekazuj dane z formularza
-    })
-    .then(response => response.json())
-    .then(data => {
-        // console.log(data);
-
-        const komunikatDiv = document.getElementById("komunikat_z_serwera_newsletter");
-        if (komunikatDiv) {
-            komunikatDiv.innerHTML = data.message;
-            // Ustawienie koloru komunikatu na podstawie wartości 'success'
-            if(data.success) {
-                komunikatDiv.style.color = "green"; // Sukces - zielony
-                document.getElementById('newsletter_form').reset();
-            } else {
-                komunikatDiv.style.color = "red"; // Niepowodzenie - czerwony
-            }
-            setTimeout(function() {
-                komunikatDiv.innerHTML = '';
-            }, 5000);
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-});
-});
-</script>
-<script>
-window.onload = function() {
-document.querySelector('.preloader').classList.add('loaded');
-};
-</script>
-</body>
-</html>
+{% endblock %}
