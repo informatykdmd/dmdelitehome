@@ -28,7 +28,6 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 ###############################
 
 def format_date(date_input, pl=True):
-
     ang_pol = {
         'January': 'styczeń',
         'February': 'luty',
@@ -170,6 +169,7 @@ def generator_daneDBList():
 
 @app.route('/')
 def indexPl():
+    session['page'] = 'indexPl'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -195,6 +195,7 @@ def indexPl():
 
 @app.route('/done-pl')
 def done():
+    session['page'] = 'done'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -225,6 +226,7 @@ def done():
 
 @app.route('/dune-pl')
 def dune():
+    session['page'] = 'dune'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -242,6 +244,7 @@ def dune():
 
 @app.route('/kurtyna-pl')
 def kurtyna():
+    session['page'] = 'kurtyna'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -259,6 +262,7 @@ def kurtyna():
 
 @app.route('/circle-pl')
 def circle():
+    session['page'] = 'circle'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -276,6 +280,7 @@ def circle():
 
 @app.route('/wind-pl')
 def wind():
+    session['page'] = 'wind'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -293,6 +298,7 @@ def wind():
 
 @app.route('/floryda-pl')
 def floryda():
+    session['page'] = 'floryda'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -310,6 +316,7 @@ def floryda():
 
 @app.route('/lustrzany-pl')
 def lustrzany():
+    session['page'] = 'lustrzany'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -327,6 +334,7 @@ def lustrzany():
 
 @app.route('/miejska-pl')
 def miejska():
+    session['page'] = 'miejska'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -344,6 +352,7 @@ def miejska():
 
 @app.route('/gonty-pl')
 def gonty():
+    session['page'] = 'gonty'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -361,6 +370,7 @@ def gonty():
 
 @app.route('/lesznowolska-pl')
 def lesznowolska():
+    session['page'] = 'lesznowolska'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -378,6 +388,8 @@ def lesznowolska():
 
 @app.route('/about-pl')
 def about():
+    session['page'] = 'about'
+
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -410,6 +422,8 @@ def about():
 
 @app.route('/team-pl')
 def team():
+    session['page'] = 'team'
+
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -429,6 +443,8 @@ def team():
 
 @app.route('/blog-full-pl')
 def blogFull():
+    session['page'] = 'blogFull'
+
     blog_post = generator_daneDBList()
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -453,6 +469,8 @@ def blogFull():
 
 @app.route('/blog-one-pl', methods=['GET'])
 def blogOne():
+    session['page'] = 'blogOne'
+
     blog_post = generator_daneDBList()
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -473,6 +491,8 @@ def blogOne():
 
 @app.route('/privacy-pl')
 def privacy():
+    session['page'] = 'privacy'
+    
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -491,6 +511,8 @@ def privacy():
     
 @app.route('/rulez-pl')
 def rulez():
+    session['page'] = 'rulez'
+
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -508,6 +530,7 @@ def rulez():
 
 @app.route('/faq-pl')
 def faq():
+    session['page'] = 'faq'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -525,6 +548,8 @@ def faq():
 
 @app.route('/help-pl')
 def help():
+    session['page'] = 'help'
+
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -542,6 +567,8 @@ def help():
 
 @app.route('/contact-pl')
 def contact():
+    session['page'] = 'contact'
+    
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -580,8 +607,8 @@ def sendMess():
         CLIENT_EMAIL = form_data['email']
         CLIENT_MESSAGE = form_data['message']
 
-        print(form_data)
-        
+        # print(form_data)
+
         if 'condition' not in form_data:
             return jsonify(
                 {
@@ -612,12 +639,7 @@ def sendMess():
                     'success': False, 
                     'message': f'Musisz podać treść wiadomości!'
                 })
-        # if CLIENT_RULEZ == '':
-        #     return jsonify(
-        #         {
-        #             'success': False, 
-        #             'message': f'Musisz podać treść wiadomości!'
-        #         })
+
         zapytanie_sql = '''
                 INSERT INTO contact 
                     (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
@@ -710,17 +732,23 @@ def addSubs():
 @app.route('/pl')
 def langPl():
     session['lang'] = 'pl'
-    return redirect(url_for('indexPl'))
+    if 'page' not in session:
+        return redirect(url_for(f'{session["page"]}'))
+    else:
+        return redirect(url_for(f'indexPl'))
 
 @app.route('/en')
 def langEn():
     session['lang'] = 'en'
-    return redirect(url_for('indexPl'))
+    if 'page' not in session:
+        return redirect(url_for(f'{session["page"]}'))
+    else:
+        return redirect(url_for(f'indexPl'))
 
 @app.errorhandler(404)
 def page_not_found(e):
     # Tutaj możesz przekierować do dowolnej trasy, którą chcesz wyświetlić jako stronę błędu 404.
-    return redirect(url_for('indexPl'))
+    return redirect(url_for(f'indexPl'))
 
 if __name__ == '__main__':
     # app.run(debug=True, port=3500)
