@@ -12249,6 +12249,13 @@ footer .copyright {
 	position: relative;
 }
 
+.banner-fix {
+	min-height: 390px;
+	padding: 30px 0;
+	/* width: 100%; */
+	position: relative;
+}
+
 .banner_cnt {
 	position: absolute;
 	left: 0;
