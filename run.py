@@ -733,17 +733,17 @@ def addSubs():
 def langPl():
     session['lang'] = 'pl'
     if 'page' not in session:
-        return redirect(url_for(f'{session["page"]}'))
-    else:
         return redirect(url_for(f'indexPl'))
+    else:
+        return redirect(url_for(f'{session["page"]}'))
 
 @app.route('/en')
 def langEn():
     session['lang'] = 'en'
     if 'page' not in session:
-        return redirect(url_for(f'{session["page"]}'))
-    else:
         return redirect(url_for(f'indexPl'))
+    else:
+        return redirect(url_for(f'{session["page"]}'))
 
 @app.errorhandler(404)
 def page_not_found(e):
