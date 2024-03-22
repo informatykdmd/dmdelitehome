@@ -579,7 +579,8 @@ def sendMess():
         CLIENT_SUBJECT = form_data['subject']
         CLIENT_EMAIL = form_data['email']
         CLIENT_MESSAGE = form_data['message']
-        # print(form_data)
+        CLIENT_RULEZ = form_data['condition']
+        print(form_data)
         if CLIENT_NAME == '':
             return jsonify(
                 {
@@ -599,6 +600,12 @@ def sendMess():
                     'message': f'Musisz podać adres email!'
                 })
         if CLIENT_MESSAGE == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać treść wiadomości!'
+                })
+        if CLIENT_RULEZ == '':
             return jsonify(
                 {
                     'success': False, 
