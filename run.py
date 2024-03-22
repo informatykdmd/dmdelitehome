@@ -779,7 +779,10 @@ def langEn():
     if 'page' not in session:
         return redirect(url_for(f'indexPl'))
     else:
-        return redirect(url_for(f'{session["page"]}'))
+        if session['page'] == 'blogOne':
+            return redirect(url_for(f'blogFull'))
+        else:
+            return redirect(url_for(f'{session["page"]}'))
 
 @app.errorhandler(404)
 def page_not_found(e):
