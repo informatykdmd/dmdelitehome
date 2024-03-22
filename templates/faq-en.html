@@ -117,3 +117,86 @@
     </div>
 </section>
 {% endblock %}
+{% block footer %}            
+<!--FOOTER-->
+<footer class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="footer-info">
+                    <img src="static/images/logo-inverse-271x37.png" alt="logo" />
+                    <p>
+                        <i class="fa fa-phone"></i>
+                        <a class="link-white" href="tel:+48736545454">&nbsp;&nbsp;+48 736 54 54 54</a>
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope"></i><a class="link-white" href="mailto:biuro@dmdelitehome.pl">&nbsp;&nbsp;biuro@dmdelitehome.pl</a>
+                    </p>
+                    <p class="footer-newsletter">ul. Dworkowa 51 <br />05-082 Stare Babice</p>
+                    <p>
+                        We work: <br />
+                        <span class="footer-newsletter">Monday - Friday <br />
+                        9:00 AM - 5:00 PM<br /></span>
+                    </p>
+                    <ul class="inline-list">
+                        <li><a class="link-white icon fa fa-facebook" href="https://www.facebook.com/dmddomy/" target="_blank"></a></li>
+                        <li><a class="link-white icon fa fa-youtube" href="https://www.youtube.com/channel/UCBRN-SPMEIYK6YRV23Komxw" target="_blank"></a></li>
+                        <li><a class="link-white icon fa fa-instagram" href="https://www.instagram.com/dmddomy/" target="_blank"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="footer-info">
+                    <h3>Blog</h3>
+                    <hr />
+                    <ul class="list-unstyled">
+                        {% for post in blog_post_three %}
+                        <li class="rd-nav-item margin-top-standard">
+                            <h5 class="strong">
+                                <a href="/blog-one-pl?post={{post['id']}}">{{post['title']}}</a>
+                            </h5>
+                            <div class="font-category">{{post['category']}}</div>
+                            <div class="footer-desc"><i class="fa fa-user"></i> {{post['author']}} <i class="fa fa-calendar"></i> {{post['data']}}</div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="footer-info">
+                    <h3>Our Newsletter</h3>
+                    <hr />
+                    <p class="footer-newsletter">
+                        Sign up for our newsletter to regularly receive the latest information, special offers, 
+                        and exclusive invitations to events organized by DMD directly to your email inbox, 
+                        allowing you to actively comment on our blog posts!
+                    </p>
+                    <form class="width-full" id="newsletter_form">
+                        <div class="stick-all">
+                            <div>
+                                <input class="footer-newsletter-form" type="text" placeholder="Podaj swoje Imię" id="newsletterEmailField" name="Imie" required/>
+                            </div>
+                            <div>
+                                <input class="footer-newsletter-form margin-left-small width-full" type="email" placeholder="Podaj swój E-mail" id="newsletterEmailField" name="Email" required/>
+                            </div>
+                        </div>
+                        <div class="padding-top-standard">
+                            <button type="submit" class="btn btn-primary" id="send_newsletter">
+                                Sign Up
+                            </button>
+                        </div>
+                        <div class="margin-top-standard" id="komunikat_z_serwera_newsletter"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright padding-y-standard">
+            DMD ELITEHOME ©<span>&nbsp;</span><span class="copyright-year"></span><span>.&nbsp;</span>
+            <a class="link-white" href="/privacy-pl">Privacy Policy</a><span>&nbsp;|&nbsp;</span>
+            <a class="link-white" href="/rulez-pl">Terms of Use of Our Website</a><span>&nbsp;|&nbsp;</span>
+            <a class="link-white" href="/faq-pl">FAQ’s</a><span>&nbsp;|&nbsp;</span>
+            <a class="link-white" href="/help-pl">help</a>
+        </div>
+    </div>
+</footer>
+{% endblock %}
