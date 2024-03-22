@@ -560,11 +560,11 @@ def blogOne():
 
     if session['lang'] == 'pl':
         blog_post = generator_daneDBList()
-        choiced = generator_daneDBList_one_post_id(post_id_int, 'pl')
+        choiced = generator_daneDBList_one_post_id(post_id_int, 'pl')[0]
     
     if session['lang'] == 'en':
         # blog_post = generator_daneDBList('en')
-        choiced = generator_daneDBList_one_post_id(post_id_int, 'en')
+        choiced = generator_daneDBList_one_post_id(post_id_int, 'en')[0]
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
