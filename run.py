@@ -72,7 +72,7 @@ def take_data_table(key, table):
     dump_key = msq.connect_to_database(f'SELECT {key} FROM {table};')
     return dump_key
 
-def generator_teamDB():
+def generator_teamDB(lang='pl'):
     took_teamD = take_data_table('*', 'workers_team')
     teamData = []
     for data in took_teamD:
@@ -80,7 +80,7 @@ def generator_teamDB():
             'ID': int(data[0]),
             'EMPLOYEE_PHOTO': data[1],
             'EMPLOYEE_NAME': data[2],
-            'EMPLOYEE_ROLE': data[3],
+            'EMPLOYEE_ROLE': data[3] if lang=='pl' else getLangText(data[3]),
             'EMPLOYEE_DEPARTMENT': data[4],
             'PHONE':'' if data[5] is None else data[5],
             'EMAIL': '' if data[6] is None else data[6],
@@ -523,18 +523,22 @@ def team():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        team_list = generator_teamDB()
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'team-pl.html', 
-            team_list=team_list, 
-            blog_post_three=blog_post_three)
-    
+        team_list = generator_teamDB('pl')
+        blog_post = generator_daneDBList_3('pl')
+        
     if session['lang'] == 'en':
-        return render_template('team-en.html')
+        team_list = generator_teamDB('en')
+        blog_post = generator_daneDBList_3('en')
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+    return render_template(
+        f'team-{session["lang"]}.html', 
+        team_list=team_list, 
+        blog_post_three=blog_post_three)
+    
+
 
 @app.route('/blog-full-pl')
 def blogFull():
@@ -546,16 +550,14 @@ def blogFull():
     if session['lang'] == 'pl':
         blog_post = generator_daneDBList_short()
         blog_post_3 = generator_daneDBList_3('pl')
-        blog_post_three = []
-        for i, member in enumerate(blog_post_3):
-            if  i < 3: blog_post_three.append(member)
-    
+        
     if session['lang'] == 'en':
         blog_post = generator_daneDBList_short('en')
-        blog_post3EN = generator_daneDBList_3()
-        blog_post_three = []
-        for i, member in enumerate(blog_post3EN):
-            if  i < 3: blog_post_three.append(member)
+        blog_post_3 = generator_daneDBList_3()
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post_3):
+        if  i < 3: blog_post_three.append(member)
 
     # Ustawienia paginacji
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
@@ -566,7 +568,7 @@ def blogFull():
     posts = blog_post[offset: offset + per_page]
 
     return render_template(
-            'blog-full-pl.html',
+            f'blog-full-{session["lang"]}.html', 
             posts=posts, 
             pagination=pagination,
             blog_post_three=blog_post_three)
@@ -597,17 +599,13 @@ def blogOne():
         if  i < 3: blog_post_three.append(member)
 
     choiced['len'] = len(choiced['comments'])
-    if session['lang'] == 'pl':
-        return render_template(
-            'blog-one-pl.html', 
-            blog_post_three=blog_post_three,
-            choiced=choiced)
+
+    return render_template(
+        f'blog-one-{session['lang']}.html', 
+        blog_post_three=blog_post_three,
+        choiced=choiced)
     
-    if session['lang'] == 'en':
-        return render_template(
-            'blog-one-en.html', 
-            blog_post_three=blog_post_three,
-            choiced=choiced)
+   
     
 
 @app.route('/privacy-pl')
@@ -618,16 +616,18 @@ def privacy():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'privacy-pl.html', 
-            blog_post_three=blog_post_three)
-    
+        blog_post = generator_daneDBList_3('pl')
     if session['lang'] == 'en':
-        return render_template('privacy-en.html')
+        blog_post = generator_daneDBList_3('en')
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+            f'privacy-{session['lang']}.html',
+            blog_post_three=blog_post_three)
+
 
     
 @app.route('/rulez-pl')
@@ -638,16 +638,18 @@ def rulez():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'ruzlez-pl.html', 
-            blog_post_three=blog_post_three)
-    
+        blog_post = generator_daneDBList_3('pl')
     if session['lang'] == 'en':
-        return render_template('ruzlez-en.html')
+        blog_post = generator_daneDBList_3('en')
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+            f'ruzlez-{session['lang']}.html',
+            blog_post_three=blog_post_three)
+
 
 @app.route('/faq-pl')
 def faq():
@@ -656,16 +658,18 @@ def faq():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'faq-pl.html', 
-            blog_post_three=blog_post_three)
-    
+        blog_post = generator_daneDBList_3('pl')
     if session['lang'] == 'en':
-        return render_template('faq-en.html')
+        blog_post = generator_daneDBList_3('en')
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+            f'faq-{session['lang']}.html',
+            blog_post_three=blog_post_three)
+
 
 @app.route('/help-pl')
 def help():
@@ -676,21 +680,15 @@ def help():
 
     if session['lang'] == 'pl':
         blog_post = generator_daneDBList_3('pl')
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'help-pl.html', 
-            blog_post_three=blog_post_three)
-    
     if session['lang'] == 'en':
-        blog_post = generator_daneDBList_3()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
+        blog_post = generator_daneDBList_3('en')
 
-        return render_template(
-            'help-en.html',
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+            f'help-{session['lang']}.html',
             blog_post_three=blog_post_three)
 
 @app.route('/contact-pl')
@@ -701,16 +699,19 @@ def contact():
         session['lang'] = 'pl'
 
     if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'contact-pl.html', 
-            blog_post_three=blog_post_three)
-    
+        blog_post = generator_daneDBList_3('pl')
     if session['lang'] == 'en':
-        return render_template('contact-en.html')
+        blog_post = generator_daneDBList_3('en')
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+    
+    return render_template(
+        f'contact-{session['lang']}.html', 
+        blog_post_three=blog_post_three)
+    
+   
 
 ############################
 ###                      ###
