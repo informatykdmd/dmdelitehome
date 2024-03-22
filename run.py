@@ -498,8 +498,15 @@ def blogFull():
 @app.route('/blog-one-pl', methods=['GET'])
 def blogOne():
     session['page'] = 'blogOne'
+    if 'lang' not in session:
+        session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList()
+    if session['lang'] == 'pl':
+        blog_post = generator_daneDBList()
+    
+    if session['lang'] == 'en':
+        blog_post = generator_daneDBList('en')
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
