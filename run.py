@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 import mysqlDB as msq
 import secrets
 from datetime import datetime
+from googletrans import Translator
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -26,6 +27,12 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 ###    ######    ######     ###
 ###    ######    ######     ###
 ###############################
+
+def getLangText(text):
+    """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
+    translator = Translator()
+    translation = translator.translate(str(text), dest='en')
+    return translation.text
 
 def format_date(date_input, pl=True):
     ang_pol = {
@@ -102,7 +109,7 @@ def generator_subsDataDB():
         subsData.append(theme)
     return subsData
 
-def generator_daneDBList():
+def generator_daneDBList(lang='pl'):
     daneList = []
     took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
     for post in took_allPost:
@@ -116,7 +123,7 @@ def generator_daneDBList():
         for i, com in enumerate(allPostComments):
             comments_dict[i] = {}
             comments_dict[i]['id'] = com[0]
-            comments_dict[i]['message'] = com[2]
+            comments_dict[i]['message'] = com[2] if lang=='pl' else getLangText(com[2])
             comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
@@ -124,18 +131,18 @@ def generator_daneDBList():
             
         theme = {
             'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
-            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0],
-            'introduction': take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0],
-            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+            'introduction': take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0]),
+            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
             'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
             'contentFoto': take_data_where_ID('CONTENT_FOTO', 'contents', 'ID', id_content)[0][0],
-            'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#'),
-            'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', '),
-            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0],
+            'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#') if lang=='pl' else str(getLangText(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0])).split('#splx#'),
+            'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', ') if lang=='pl' else str(getLangText(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0])).split(', '),
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
             'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]),
             'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
 
-            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0],
+            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0] if lang=='pl' else getLangText(take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0]),
             'author_avatar': take_data_where_ID('AVATAR_AUTHOR', 'authors', 'ID', id_author)[0][0],
             'author_facebook': take_data_where_ID('FACEBOOK', 'authors', 'ID', id_author)[0][0],
             'author_twitter': take_data_where_ID('TWITER_X', 'authors', 'ID', id_author)[0][0],
@@ -563,7 +570,14 @@ def help():
             blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
-        return render_template('help-en.html')
+        blog_post = generator_daneDBList('en')
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 3: blog_post_three.append(member)
+
+        return render_template(
+            'help-en.html',
+            blog_post_three=blog_post_three)
 
 @app.route('/contact-pl')
 def contact():
@@ -725,9 +739,7 @@ def addSubs():
                 })
         
     return redirect(url_for('indexPl'))
-        
-    
-    
+
 
 @app.route('/pl')
 def langPl():
