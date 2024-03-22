@@ -268,25 +268,25 @@ def indexPl():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        team_list = generator_teamDB()
-        fourListTeam = []
-        for i, member in enumerate(team_list):
-            if  i < 4: fourListTeam.append(member)
+    team_list = generator_teamDB(session["lang"])
+
+    fourListTeam = []
+    for i, member in enumerate(team_list):
+        if  i < 4: fourListTeam.append(member)
         
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
+    blog_post = generator_daneDBList(session["lang"])
 
-        return render_template(
-            'index-pl.html', 
-            fourListTeam=fourListTeam, 
-            blog_post_three=blog_post_three
-            )
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
 
-    if session['lang'] == 'en':
-        return render_template('index-en.html')
+    return render_template(
+        f'index-{session["lang"]}.html', 
+        fourListTeam=fourListTeam, 
+        blog_post_three=blog_post_three
+        )
+
+    
 
 @app.route('/done-pl')
 def done():
