@@ -153,6 +153,27 @@ def generator_daneDBList(lang='pl'):
         daneList.append(theme)
     return daneList
 
+def generator_daneDBList3EN(lang='en'):
+    daneList = []
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
+    for post in took_allPost:
+        id_content = post[1]
+        id_author = post[2]
+
+        theme = {
+            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+            
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
+            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+
+            
+
+        }
+        daneList.append(theme)
+    return daneList
+
 ############################
 ##      ######           ###
 ##      ######           ###
@@ -570,7 +591,7 @@ def help():
             blog_post_three=blog_post_three)
     
     if session['lang'] == 'en':
-        blog_post = generator_daneDBList('en')
+        blog_post = generator_daneDBList3EN()
         blog_post_three = []
         for i, member in enumerate(blog_post):
             if  i < 3: blog_post_three.append(member)
