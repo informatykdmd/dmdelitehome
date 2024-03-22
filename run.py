@@ -601,7 +601,7 @@ def blogOne():
     choiced['len'] = len(choiced['comments'])
 
     return render_template(
-        f'blog-one-{session['lang']}.html', 
+        f'blog-one-{session["lang"]}.html', 
         blog_post_three=blog_post_three,
         choiced=choiced)
     
@@ -625,7 +625,7 @@ def privacy():
         if  i < 3: blog_post_three.append(member)
 
     return render_template(
-            f'privacy-{session['lang']}.html',
+            f'privacy-{session["lang"]}.html',
             blog_post_three=blog_post_three)
 
 
@@ -647,7 +647,7 @@ def rulez():
         if  i < 3: blog_post_three.append(member)
 
     return render_template(
-            f'ruzlez-{session['lang']}.html',
+            f'ruzlez-{session["lang"]}.html',
             blog_post_three=blog_post_three)
 
 
@@ -667,7 +667,7 @@ def faq():
         if  i < 3: blog_post_three.append(member)
 
     return render_template(
-            f'faq-{session['lang']}.html',
+            f'faq-{session["lang"]}.html',
             blog_post_three=blog_post_three)
 
 
@@ -688,7 +688,7 @@ def help():
         if  i < 3: blog_post_three.append(member)
 
     return render_template(
-            f'help-{session['lang']}.html',
+            f'help-{session["lang"]}.html',
             blog_post_three=blog_post_three)
 
 @app.route('/contact-pl')
@@ -708,7 +708,7 @@ def contact():
         if  i < 3: blog_post_three.append(member)
     
     return render_template(
-        f'contact-{session['lang']}.html', 
+        f'contact-{session["lang"]}.html', 
         blog_post_three=blog_post_three)
     
    
