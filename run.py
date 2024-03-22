@@ -526,10 +526,18 @@ def blogOne():
         if int(one_post['id']) == post_id_int:
             choiced = one_post
     choiced['len'] = len(choiced['comments'])
-    return render_template(
+    if session['lang'] == 'pl':
+        return render_template(
             'blog-one-pl.html', 
             blog_post_three=blog_post_three,
             choiced=choiced)
+    
+    if session['lang'] == 'en':
+        return render_template(
+            'blog-one-en.html', 
+            blog_post_three=blog_post_three,
+            choiced=choiced)
+    
 
 @app.route('/privacy-pl')
 def privacy():
