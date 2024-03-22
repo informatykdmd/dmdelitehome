@@ -483,6 +483,7 @@ def blogFull():
             if  i < 3: blog_post_three.append(member)
     
     if session['lang'] == 'en':
+        blog_post = generator_daneDBList('en')
         blog_post3EN = generator_daneDBList3EN()
         blog_post_three = []
         for i, member in enumerate(blog_post3EN):
