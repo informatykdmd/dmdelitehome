@@ -6,6 +6,73 @@
 {% block css_and_links %}{% endblock %}
 {% block script_header %}{% endblock %}
 
+{% block body_header %}
+<header class="section page-header">
+    <!--RD Navbar-->
+    <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+            <div class="rd-navbar-main-outer">
+                <div class="rd-navbar-main">
+                    <!--RD Navbar Panel-->
+                    <div class="rd-navbar-panel">
+                        <!--RD Navbar Toggle-->
+                        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap">
+                            <span></span>
+                        </button>
+                        <!--RD Navbar Brand-->
+                        <div class="rd-navbar-brand">
+                            <!--Brand-->
+                            <a class="brand" href="index.html">
+                                <img class="brand-logo-dark" src="static/images/logo-default-273x37.png" alt="" width="136" height="18"/>
+                                <img class="brand-logo-light" src="static/images/logo-inverse-271x37.png" alt="" width="135" height="18"/>
+                            </a>
+                        </div>
+                    </div>
+                <div class="rd-navbar-main-element">
+                    <div class="rd-navbar-nav-wrap">
+                        <ul class="rd-navbar-nav">
+                            <li class="rd-nav-item active">
+                                <a class="rd-nav-link" href="/">
+                                    DMD
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/done-pl">
+                                    Projects
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/team-pl">
+                                    Team
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/about-pl">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/blog-full-pl">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/contact-pl">
+                                    Contact
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a href="/en">EN</a> / <a href="/pl">PL</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+{% endblock %}
 
 {% block content %}
 <!--RELIABLE AND PROFESSIONAL-->
@@ -361,7 +428,7 @@
             <a class="link-white" href="/privacy-pl">Privacy Policy</a><span>&nbsp;|&nbsp;</span>
             <a class="link-white" href="/rulez-pl">Terms of Use of Our Website</a><span>&nbsp;|&nbsp;</span>
             <a class="link-white" href="/faq-pl">FAQ’s</a><span>&nbsp;|&nbsp;</span>
-            <a class="link-white" href="/help-pl">help</a>
+            <a class="link-white" href="/help-pl">Help</a>
         </div>
     </div>
 </footer>
