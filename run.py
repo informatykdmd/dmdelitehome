@@ -116,7 +116,6 @@ def generator_daneDBList(lang='pl'):
         id = post[0]
         id_content = post[1]
         id_author = post[2]
-        post_data = post[3]
 
         allPostComments = take_data_where_ID('*', 'comments', 'BLOG_POST_ID', id)
         comments_dict = {}
@@ -127,7 +126,7 @@ def generator_daneDBList(lang='pl'):
             comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
-            comments_dict[i]['data-time'] = format_date(com[4])
+            comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
             
         theme = {
             'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
@@ -139,7 +138,7 @@ def generator_daneDBList(lang='pl'):
             'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#') if lang=='pl' else str(getLangText(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0])).replace('#SPLX#', '#splx#').split('#splx#'),
             'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', ') if lang=='pl' else str(getLangText(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0])).split(', '),
             'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
-            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
             'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
 
             'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0] if lang=='pl' else getLangText(take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0]),
