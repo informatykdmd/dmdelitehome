@@ -152,6 +152,49 @@ def generator_daneDBList(lang='pl'):
         daneList.append(theme)
     return daneList
 
+def generator_daneDBList_one_post_id(id_post, lang='pl'):
+    daneList = []
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts WHERE ID={id_post};') # take_data_table('*', 'blog_posts')
+    for post in took_allPost:
+        id = post[0]
+        id_content = post[1]
+        id_author = post[2]
+
+        allPostComments = take_data_where_ID('*', 'comments', 'BLOG_POST_ID', id)
+        comments_dict = {}
+        for i, com in enumerate(allPostComments):
+            comments_dict[i] = {}
+            comments_dict[i]['id'] = com[0]
+            comments_dict[i]['message'] = com[2] if lang=='pl' else getLangText(com[2])
+            comments_dict[i]['user'] = take_data_where_ID('CLIENT_NAME', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
+            comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
+            
+        theme = {
+            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+            'introduction': take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CONTENT_MAIN', 'contents', 'ID', id_content)[0][0]),
+            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
+            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
+            'contentFoto': take_data_where_ID('CONTENT_FOTO', 'contents', 'ID', id_content)[0][0],
+            'additionalList': str(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0]).split('#splx#') if lang=='pl' else str(getLangText(take_data_where_ID('BULLETS', 'contents', 'ID', id_content)[0][0])).replace('#SPLX#', '#splx#').split('#splx#'),
+            'tags': str(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0]).split(', ') if lang=='pl' else str(getLangText(take_data_where_ID('TAGS', 'contents', 'ID', id_content)[0][0])).split(', '),
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
+            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+
+            'author_about': take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0] if lang=='pl' else getLangText(take_data_where_ID('ABOUT_AUTHOR', 'authors', 'ID', id_author)[0][0]),
+            'author_avatar': take_data_where_ID('AVATAR_AUTHOR', 'authors', 'ID', id_author)[0][0],
+            'author_facebook': take_data_where_ID('FACEBOOK', 'authors', 'ID', id_author)[0][0],
+            'author_twitter': take_data_where_ID('TWITER_X', 'authors', 'ID', id_author)[0][0],
+            'author_instagram': take_data_where_ID('INSTAGRAM', 'authors', 'ID', id_author)[0][0],
+
+            'comments': comments_dict
+        }
+        daneList.append(theme)
+    return daneList
+
 def generator_daneDBList3EN(lang='en'):
     daneList = []
     took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
@@ -510,9 +553,11 @@ def blogOne():
 
     if session['lang'] == 'pl':
         blog_post = generator_daneDBList()
+        choiced = generator_daneDBList_one_post_id(post_id_int, 'pl')
     
     if session['lang'] == 'en':
-        blog_post = generator_daneDBList('en')
+        # blog_post = generator_daneDBList('en')
+        choiced = generator_daneDBList_one_post_id(post_id_int, 'en')
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -521,10 +566,11 @@ def blogOne():
     post_id = request.args.get('post')
     try: post_id_int = int(post_id)
     except ValueError: return redirect(url_for('indexPl'))
-    choiced = {}
-    for one_post in blog_post:
-        if int(one_post['id']) == post_id_int:
-            choiced = one_post
+    
+    # choiced = {}
+    # for one_post in blog_post:
+    #     if int(one_post['id']) == post_id_int:
+    #         choiced = one_post
     choiced['len'] = len(choiced['comments'])
     if session['lang'] == 'pl':
         return render_template(
