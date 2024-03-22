@@ -550,6 +550,8 @@ def blogOne():
     session['page'] = 'blogOne'
     if 'post' in request.args:
         post_id = request.args.get('post')
+        try: post_id_int = int(post_id)
+        except ValueError: return redirect(url_for('indexPl'))
     else:
         return redirect(url_for(f'indexPl'))
 
@@ -569,8 +571,7 @@ def blogOne():
         if  i < 3: blog_post_three.append(member)
 
     
-    try: post_id_int = int(post_id)
-    except ValueError: return redirect(url_for('indexPl'))
+    
     
     # choiced = {}
     # for one_post in blog_post:
