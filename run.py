@@ -579,8 +579,15 @@ def sendMess():
         CLIENT_SUBJECT = form_data['subject']
         CLIENT_EMAIL = form_data['email']
         CLIENT_MESSAGE = form_data['message']
-        # CLIENT_RULEZ = form_data['condition']
+
         print(form_data)
+        
+        if 'condition' not in form_data:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz zaakceptować naszą politykę prywatności!'
+                })
         if CLIENT_NAME == '':
             return jsonify(
                 {
