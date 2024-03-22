@@ -488,6 +488,58 @@ def privacy():
     if session['lang'] == 'en':
         return render_template('privacy-en.html')
 
+    
+@app.route('/rulez-pl')
+def rulez():
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+
+    if session['lang'] == 'pl':
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 3: blog_post_three.append(member)
+        return render_template(
+            'ruzlez-pl.html', 
+            blog_post_three=blog_post_three)
+    
+    if session['lang'] == 'en':
+        return render_template('ruzlez-en.html')
+
+@app.route('/faq-pl')
+def faq():
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+
+    if session['lang'] == 'pl':
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 3: blog_post_three.append(member)
+        return render_template(
+            'faq-pl.html', 
+            blog_post_three=blog_post_three)
+    
+    if session['lang'] == 'en':
+        return render_template('faq-en.html')
+
+@app.route('/help-pl')
+def help():
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+
+    if session['lang'] == 'pl':
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 3: blog_post_three.append(member)
+        return render_template(
+            'help-pl.html', 
+            blog_post_three=blog_post_three)
+    
+    if session['lang'] == 'en':
+        return render_template('help-en.html')
+
 @app.route('/contact-pl')
 def contact():
     if 'lang' not in session:
