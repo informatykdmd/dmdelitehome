@@ -768,7 +768,10 @@ def langPl():
     if 'page' not in session:
         return redirect(url_for(f'indexPl'))
     else:
-        return redirect(url_for(f'{session["page"]}'))
+        if session['page'] == 'blogOne':
+            return redirect(url_for(f'blogFull'))
+        else:
+            return redirect(url_for(f'{session["page"]}'))
 
 @app.route('/en')
 def langEn():
