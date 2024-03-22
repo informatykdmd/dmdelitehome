@@ -473,13 +473,20 @@ def team():
 def blogFull():
     session['page'] = 'blogFull'
 
-    blog_post = generator_daneDBList()
-    blog_post_three = []
-    for i, member in enumerate(blog_post):
-        if  i < 3: blog_post_three.append(member)
+    if 'lang' not in session:
+        session['lang'] = 'pl'
 
-    # Wczytanie listy wszystkich postów z bazy danych i przypisanie jej do zmiennej posts
-    blog_post = generator_daneDBList()
+    if session['lang'] == 'pl':
+        blog_post = generator_daneDBList()
+        blog_post_three = []
+        for i, member in enumerate(blog_post):
+            if  i < 3: blog_post_three.append(member)
+    
+    if session['lang'] == 'en':
+        blog_post3EN = generator_daneDBList3EN()
+        blog_post_three = []
+        for i, member in enumerate(blog_post3EN):
+            if  i < 3: blog_post_three.append(member)
 
     # Ustawienia paginacji
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
