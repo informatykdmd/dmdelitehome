@@ -548,6 +548,11 @@ def blogFull():
 @app.route('/blog-one-pl', methods=['GET'])
 def blogOne():
     session['page'] = 'blogOne'
+    if 'post' in request.args:
+        post_id = request.args.get('post')
+    else:
+        return redirect(url_for(f'indexPl'))
+
     if 'lang' not in session:
         session['lang'] = 'pl'
 
@@ -563,7 +568,7 @@ def blogOne():
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
 
-    post_id = request.args.get('post')
+    
     try: post_id_int = int(post_id)
     except ValueError: return redirect(url_for('indexPl'))
     
