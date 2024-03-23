@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}DMD ELITEHOME - Kontakt {% endblock %}
+
+{% block body_header %}
+<header class="section page-header">
+    <!--RD Navbar-->
+    <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+            <div class="rd-navbar-main-outer">
+                <div class="rd-navbar-main">
+                    <!--RD Navbar Panel-->
+                    <div class="rd-navbar-panel">
+                        <!--RD Navbar Toggle-->
+                        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap">
+                            <span></span>
+                        </button>
+                        <!--RD Navbar Brand-->
+                        <div class="rd-navbar-brand">
+                            <!--Brand-->
+                            <a class="brand" href="index.html">
+                                <img class="brand-logo-dark" src="static/images/logo-default-273x37.png" alt="" width="136" height="18"/>
+                                <img class="brand-logo-light" src="static/images/logo-inverse-271x37.png" alt="" width="135" height="18"/>
+                            </a>
+                        </div>
+                    </div>
+                <div class="rd-navbar-main-element">
+                    <div class="rd-navbar-nav-wrap">
+                        <ul class="rd-navbar-nav">
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/">
+                                    DMD
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/done-pl">
+                                    Projects
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/team-pl">
+                                    Team
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/about-pl">
+                                    About Us
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a class="rd-nav-link" href="/blog-full-pl">
+                                    Blog
+                                </a>
+                            </li>
+                            <li class="rd-nav-item active">
+                                <a class="rd-nav-link" href="/contact-pl">
+                                    Contact
+                                </a>
+                            </li>
+                            <li class="rd-nav-item">
+                                <a href="/en">EN</a> / <a href="/pl">PL</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<!--CONTACT INFORMATION-->
+<section class="well-2 text-xs-center">
+<div class="container">
+    <h3><span class="text-primary">Contact</span><br><span class="normal">Information</span></h3>
+    <div class="row row-40 offset-top-1">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <address class="contact-info">
+        <p class="heading-6">05-082 Stare Babice<br>ul. Dworkowa 51</p>
+
+        </address>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <address class="contact-info">
+            <p class="heading-6">Phone:<br><a href="tel:+48736545454">+48 736 54 54 54</a></p>
+        </address>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <address class="contact-info">
+        <p class="heading-6">E-mail:<br><a href="mailto:biuro@dmdelitehome.pl">biuro@dmdelitehome.pl</a></p>
+        
+        </address>
+    </div>
+    </div>
+</div>
+</section>
+<!--CONTACT FORM-->
+<section class="parallax-container parallax--mod well-2" data-parallax-img="static/images/contact_paralax_1.jpg">
+<div class="parallax-content">
+    <div class="container">
+        <h3 class="text-default text-xs-center">Contact<br><span class="normal">Form</span></h3>
+    <form class="rd-mailform mailform" data-form-output="form-output-global" data-form-type="contact" id="contact_form">
+        <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="form-wrap">
+            
+            <label class="form-label" for="form-name">Name and Surname</label>
+            <input class="form-input" id="form-name" type="text" name="name" data-constraints="@Required" required>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="form-wrap">
+                <label class="form-label" for="form-phone">Subject of Inquiry</label>
+            <input class="form-input" id="form-phone" type="text" name="subject" data-constraints="@Required" required>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="form-wrap">
+            <label class="form-label" for="form-email">E-mail</label>
+            <input class="form-input" id="form-email" type="text" name="email" data-constraints="@Required @Email" required>
+            </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12">
+            <div class="form-wrap">
+                <label class="form-label" for="form-message">Write to Us</label>
+                <textarea class="form-input" id="form-message" name="message" data-constraints="@Required" required></textarea>
+            </div>
+            <div class="form-check form-switch margin-top-standard">
+                <input class="form-check-input bg-dark border-dark-subtle" type="checkbox" role="switch" name="condition" id="condition" value="accepted" required/>
+                <label class="form-check-label" for="condition">
+                    I accept the DMD ELITEHOME privacy policy, hereby giving my consent for the processing of my personal 
+                    data provided in this form for contact purposes, in accordance with the applicable privacy policy.
+                </label>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-lg-12 col-md-12">
+            <button id="send_contact" class="button btn-md button-primary" type="submit">Send Message<span class="insider"></span></button>
+        </div>
+        <div class="margin-top-standard" id="komunikat_z_serwera"></div>
+        </div>
+    </form>
+    </div>
+</div>
+</section>
+{% endblock %}
+{% block bottom_script %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('contact_form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
+            const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
+            const jsonFormData = Object.fromEntries(formData.entries());
+
+            fetch('/send-mess-pl', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(jsonFormData) // Przekazuj dane z formularza
+            })
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data);
+
+                const komunikatDiv = document.getElementById("komunikat_z_serwera");
+                if (komunikatDiv) {
+                    komunikatDiv.innerHTML = data.message;
+                    // Ustawienie koloru komunikatu na podstawie wartości 'success'
+                    if(data.success) {
+                        komunikatDiv.style.color = "#30ff00"; // Sukces - zielony
+                        document.getElementById('contact_form').reset();
+                    } else {
+                        komunikatDiv.style.color = "#ff3535"; // Niepowodzenie - czerwony
+                    }
+                    setTimeout(function() {
+                        komunikatDiv.innerHTML = '';
+                    }, 5000);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+{% endblock %}
