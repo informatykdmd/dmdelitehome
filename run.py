@@ -239,6 +239,20 @@ def generator_daneDBList_3(lang='en'):
             break
     return daneList
 
+def mainDataGeneratorDict():
+    data = {
+        "BLOG-ALLPOSTS-PL": generator_daneDBList('pl'),
+        "BLOG-ALLPOSTS-EN": generator_daneDBList('en'),
+        "BLOG-SHORT-PL": generator_daneDBList_short('pl'),
+        "BLOG-SHORT-EN": generator_daneDBList_short('en'),
+        "BLOG-FOOTER-PL": generator_daneDBList_3('pl'),
+        "BLOG-FOOTER-EN": generator_daneDBList_3('en'),
+        "TEAM-ALL-PL": generator_teamDB('pl'),
+        "TEAM-ALL-EN": generator_teamDB('en'),
+        "SUBS-ALL-PL": generator_subsDataDB()
+    }
+    return data
+
 
 
 ############################
@@ -274,7 +288,7 @@ def indexPl():
     for i, member in enumerate(team_list):
         if  i < 4: fourListTeam.append(member)
         
-    blog_post = generator_daneDBList(session["lang"])
+    blog_post = generator_daneDBList_3(session["lang"])
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -294,17 +308,16 @@ def done():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'done-pl.html',
-              blog_post_three=blog_post_three)
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'done-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
     
-    if session['lang'] == 'en':
-        return render_template('done-en.html')
+
 
 """
     Dune House
@@ -325,17 +338,15 @@ def dune():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'dune-pl.html', 
-            blog_post_three=blog_post_three)
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'dune-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
     
-    if session['lang'] == 'en':
-        return render_template('dune-en.html')
 
 @app.route('/kurtyna-pl')
 def kurtyna():
@@ -361,17 +372,15 @@ def circle():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'circle-pl.html', 
-            blog_post_three=blog_post_three)
-    
-    if session['lang'] == 'en':
-        return render_template('circle-en.html')
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'circle-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
+
 
 @app.route('/wind-pl')
 def wind():
@@ -379,17 +388,15 @@ def wind():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'wind-pl.html', 
-            blog_post_three=blog_post_three)
-    
-    if session['lang'] == 'en':
-        return render_template('wind-en.html')
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'wind-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
+
 
 @app.route('/floryda-pl')
 def floryda():
@@ -397,17 +404,16 @@ def floryda():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'floryda-pl.html', 
-            blog_post_three=blog_post_three)
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'floryda-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
     
-    if session['lang'] == 'en':
-        return render_template('floryda-en.html')
+
 
 @app.route('/lustrzany-pl')
 def lustrzany():
@@ -415,17 +421,15 @@ def lustrzany():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'lustrzany-pl.html', 
-            blog_post_three=blog_post_three)
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'lustrzany-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
     
-    if session['lang'] == 'en':
-        return render_template('lustrzany-en.html')
 
 @app.route('/miejska-pl')
 def miejska():
@@ -433,17 +437,14 @@ def miejska():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'miejska-pl.html', 
-            blog_post_three=blog_post_three)
-    
-    if session['lang'] == 'en':
-        return render_template('miejska-en.html')
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'miejska-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
 
 @app.route('/gonty-pl')
 def gonty():
@@ -451,17 +452,14 @@ def gonty():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'gonty-pl.html', 
-            blog_post_three=blog_post_three)
-    
-    if session['lang'] == 'en':
-        return render_template('gonty-en.html')
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'gonty-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
 
 @app.route('/lesznowolska-pl')
 def lesznowolska():
@@ -469,17 +467,14 @@ def lesznowolska():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'lesznowolska-pl.html', 
-            blog_post_three=blog_post_three)
-    
-    if session['lang'] == 'en':
-        return render_template('lesznowolska-en.html')
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'lesznowolska-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
 
 @app.route('/about-pl')
 def about():
@@ -488,17 +483,14 @@ def about():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'about-pl.html', 
-            blog_post_three=blog_post_three)
-    
-    if session['lang'] == 'en':
-        return render_template('about-en.html')
+    blog_post = generator_daneDBList_3(session["lang"])
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'about-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
 
 ############################
 ###      ##########      ###
@@ -586,14 +578,10 @@ def blogOne():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList_3('pl')
-        choiced = generator_daneDBList_one_post_id(post_id_int, 'pl')[0]
     
-    if session['lang'] == 'en':
-        blog_post = generator_daneDBList_3()
-        choiced = generator_daneDBList_one_post_id(post_id_int, 'en')[0]
-
+    blog_post = generator_daneDBList_3(session["lang"])
+    choiced = generator_daneDBList_one_post_id(post_id_int, session["lang"])[0]
+    
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -637,11 +625,8 @@ def rulez():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList_3('pl')
-    if session['lang'] == 'en':
-        blog_post = generator_daneDBList_3('en')
-
+    blog_post = generator_daneDBList_3(session["lang"])
+    
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -698,10 +683,8 @@ def contact():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList_3('pl')
-    if session['lang'] == 'en':
-        blog_post = generator_daneDBList_3('en')
+    blog_post = generator_daneDBList_3(session["lang"])
+
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -729,6 +712,9 @@ def contact():
 
 @app.route('/send-mess-pl', methods=['POST'])
 def sendMess():
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+
     if request.method == 'POST':
         form_data = request.json
         CLIENT_NAME = form_data['name']
@@ -736,38 +722,69 @@ def sendMess():
         CLIENT_EMAIL = form_data['email']
         CLIENT_MESSAGE = form_data['message']
 
-        # print(form_data)
+        if session["lang"] == 'pl':
+            if 'condition' not in form_data:
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'Musisz zaakceptować naszą politykę prywatności!'
+                    })
+            if CLIENT_NAME == '':
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'Musisz podać swoje Imię i Nazwisko!'
+                    })
+            if CLIENT_SUBJECT == '':
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'Musisz podać temat wiadomości!'
+                    })
+            if CLIENT_EMAIL == '' or '@' not in CLIENT_EMAIL or '.' not in CLIENT_EMAIL or len(CLIENT_EMAIL) < 7:
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'Musisz podać adres email!'
+                    })
+            if CLIENT_MESSAGE == '':
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'Musisz podać treść wiadomości!'
+                    })
+        if session["lang"] == 'en':
+            if 'condition' not in form_data:
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'You must accept our privacy policy!'
+                    })
+            if CLIENT_NAME == '':
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'You must provide your Full Name!'
+                    })
+            if CLIENT_SUBJECT == '':
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'You must provide the subject of the message!'
+                    })
+            if CLIENT_EMAIL == '' or '@' not in CLIENT_EMAIL or '.' not in CLIENT_EMAIL or len(CLIENT_EMAIL) < 7:
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'You must provide a valid email address!'
+                    })
+            if CLIENT_MESSAGE == '':
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'You must provide the message content!'
+                    })
 
-        if 'condition' not in form_data:
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Musisz zaakceptować naszą politykę prywatności!'
-                })
-        if CLIENT_NAME == '':
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Musisz podać swoje Imię i Nazwisko!'
-                })
-        if CLIENT_SUBJECT == '':
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Musisz podać temat wiadomości!'
-                })
-        if CLIENT_EMAIL == '' or '@' not in CLIENT_EMAIL or '.' not in CLIENT_EMAIL or len(CLIENT_EMAIL) < 7:
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Musisz podać adres email!'
-                })
-        if CLIENT_MESSAGE == '':
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Musisz podać treść wiadomości!'
-                })
 
         zapytanie_sql = '''
                 INSERT INTO contact 
@@ -776,18 +793,32 @@ def sendMess():
                 '''
         dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
         if msq.insert_to_database(zapytanie_sql, dane):
-            return jsonify({'success': True, 'message': f'Wiadomość została wysłana!'})
+            if session["lang"] == "pl":
+                return jsonify({'success': True, 'message': f'Wiadomość została wysłana!'})
+            if  session["lang"] == "en":
+                return jsonify({'success': True, 'message': f"Your message has been sent!"})
         else:
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Wystąpił problem z wysłaniem Twojej wiadomości, skontaktuj się w inny sposób lub spróbuj później!'
-                })
+            if session["lang"] == "pl":
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'Wystąpił problem z wysłaniem Twojej wiadomości, skontaktuj się w inny sposób lub spróbuj później!'
+                    })
+            if  session["lang"] == "en":
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'There was a problem sending your message, please contact us in another way or try again later!'
+                    })
+
     return redirect(url_for('indexPl'))
 
 @app.route('/add-comm-pl', methods=['POST'])
 def addComm():
     subsList = generator_subsDataDB() # pobieranie danych subskrybentów
+
+    if 'lang' not in session:
+        session['lang'] = 'pl'
 
     if request.method == 'POST':
         form_data = request.json
@@ -812,15 +843,26 @@ def addComm():
                     '''
             dane = (POST_ID, SUB_COMMENT, SUB_ID)
             if msq.insert_to_database(zapytanie_sql, dane):
-                return jsonify({'success': True, 'message': f'Post został skomentowany!'})
+                if session["lang"] == "pl":
+                    return jsonify({'success': True, 'message': f'Post został skomentowany!'})
+                if session["lang"] == "en":
+                    return jsonify({'success': True, 'message': f"The post has been commented!"})
         else:
-            return jsonify({'success': False, 'message': f'Musisz być naszym subskrybentem żeby komentować naszego bloga!'})
+            if session["lang"] == "pl":
+                return jsonify({'success': False, 'message': f'Musisz być naszym subskrybentem żeby komentować naszego bloga!'})
+            if session["lang"] == "en":
+                return jsonify({'success': False, 'message': f'You must be our subscriber to comment on our blog!'})
+
         
     return redirect(url_for('indexPl'))
 
 @app.route('/add-subs-pl', methods=['POST'])
 def addSubs():
     subsList = generator_subsDataDB() # pobieranie danych subskrybentów
+
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+
     if request.method == 'POST':
         form_data = request.json
 
@@ -841,23 +883,35 @@ def addSubs():
                     '''
             dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH)
             if msq.insert_to_database(zapytanie_sql, dane):
+                if session["lang"] == "pl":
+                    return jsonify(
+                        {
+                            'success': True, 
+                            'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'
+                        })
+                if session["lang"] == "en":
+                    return jsonify({"success":True,"message":"Successfully added!"})
+        else:
+            if session["lang"] == "pl":
                 return jsonify(
                     {
-                        'success': True, 
-                        'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'
+                        'success': False, 
+                        'message': f'Podany adres email jest już zarejestrowany!'
                     })
-        else:
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Podany adres email jest już zarejestrowany!'
-                })
-        
+            if session["lang"] == "en":
+                return jsonify(
+                    {
+                        'success': False, 
+                        'message': f'The provided email address is already registered!'
+                    })
+
     return redirect(url_for('indexPl'))
 
 
 @app.route('/pl')
 def langPl():
+    session['MAINDATA'] = mainDataGeneratorDict()
+    
     session['lang'] = 'pl'
     if 'page' not in session:
         return redirect(url_for(f'indexPl'))
@@ -870,6 +924,9 @@ def langPl():
 @app.route('/en')
 def langEn():
     session['lang'] = 'en'
+
+    session['MAINDATA'] = mainDataGeneratorDict()
+
     if 'page' not in session:
         return redirect(url_for(f'indexPl'))
     else:
