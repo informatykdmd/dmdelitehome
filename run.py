@@ -332,13 +332,29 @@ def done():
 
 """
 
+"""
+        "BLOG-ALLPOSTS-PL": generator_daneDBList('pl'),
+        "BLOG-ALLPOSTS-EN": generator_daneDBList('en'),
+        "BLOG-SHORT-PL": generator_daneDBList_short('pl'),
+        "BLOG-SHORT-EN": generator_daneDBList_short('en'),
+        "BLOG-FOOTER-PL": generator_daneDBList_3('pl'),
+        "BLOG-FOOTER-EN": generator_daneDBList_3('en'),
+        "TEAM-ALL-PL": generator_teamDB('pl'),
+        "TEAM-ALL-EN": generator_teamDB('en'),
+        "SUBS-ALL-PL": generator_subsDataDB()
+"""
 @app.route('/dune-pl')
 def dune():
     session['page'] = 'dune'
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -354,17 +370,20 @@ def kurtyna():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList()
-        blog_post_three = []
-        for i, member in enumerate(blog_post):
-            if  i < 3: blog_post_three.append(member)
-        return render_template(
-            'kurtyna-pl.html', 
-            blog_post_three=blog_post_three)
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+    return render_template(
+        f'kurtyna-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
     
-    if session['lang'] == 'en':
-        return render_template('kurtyna-en.html')
+
 
 @app.route('/circle-pl')
 def circle():
@@ -372,7 +391,12 @@ def circle():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -388,7 +412,12 @@ def wind():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -404,7 +433,12 @@ def floryda():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -421,7 +455,12 @@ def lustrzany():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -437,7 +476,12 @@ def miejska():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -452,7 +496,12 @@ def gonty():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -467,7 +516,12 @@ def lesznowolska():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -483,7 +537,12 @@ def about():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -514,13 +573,17 @@ def team():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        team_list = generator_teamDB('pl')
-        blog_post = generator_daneDBList_3('pl')
-        
-    if session['lang'] == 'en':
-        team_list = generator_teamDB('en')
-        blog_post = generator_daneDBList_3('en')
+    if 'TEAM-ALL' not in session:
+        team_list = generator_teamDB(session["lang"])
+        session['TEAM-ALL'] = team_list
+    else:
+        team_list = session['TEAM-ALL']
+
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -539,13 +602,17 @@ def blogFull():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList_short()
-        blog_post_3 = generator_daneDBList_3('pl')
-        
-    if session['lang'] == 'en':
-        blog_post = generator_daneDBList_short('en')
-        blog_post_3 = generator_daneDBList_3()
+    if 'BLOG-SHORT' not in session:
+        blog_post = generator_daneDBList_short(session["lang"])
+        session['BLOG-SHORT'] = blog_post
+    else:
+        blog_post = session['BLOG-SHORT']
+
+    if 'BLOG-FOOTER' not in session:
+        blog_post_3 = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post_3
+    else:
+        blog_post_3 = session['BLOG-FOOTER']
 
     blog_post_three = []
     for i, member in enumerate(blog_post_3):
@@ -579,7 +646,12 @@ def blogOne():
         session['lang'] = 'pl'
 
     
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
+
     choiced = generator_daneDBList_one_post_id(post_id_int, session["lang"])[0]
     
     blog_post_three = []
@@ -603,10 +675,11 @@ def privacy():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList_3('pl')
-    if session['lang'] == 'en':
-        blog_post = generator_daneDBList_3('en')
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -625,7 +698,11 @@ def rulez():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
     
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -642,10 +719,11 @@ def faq():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList_3('pl')
-    if session['lang'] == 'en':
-        blog_post = generator_daneDBList_3('en')
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -663,10 +741,11 @@ def help():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    if session['lang'] == 'pl':
-        blog_post = generator_daneDBList_3('pl')
-    if session['lang'] == 'en':
-        blog_post = generator_daneDBList_3('en')
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
 
     blog_post_three = []
     for i, member in enumerate(blog_post):
@@ -683,7 +762,11 @@ def contact():
     if 'lang' not in session:
         session['lang'] = 'pl'
 
-    blog_post = generator_daneDBList_3(session["lang"])
+    if 'BLOG-FOOTER' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session['BLOG-FOOTER'] = blog_post
+    else:
+        blog_post = session['BLOG-FOOTER']
 
 
     blog_post_three = []
@@ -910,7 +993,6 @@ def addSubs():
 
 @app.route('/pl')
 def langPl():
-    # session['MAINDATA'] = mainDataGeneratorDict()
 
     session['lang'] = 'pl'
     if 'page' not in session:
@@ -924,8 +1006,6 @@ def langPl():
 @app.route('/en')
 def langEn():
     session['lang'] = 'en'
-
-    # session['MAINDATA'] = mainDataGeneratorDict()
 
     if 'page' not in session:
         return redirect(url_for(f'indexPl'))
