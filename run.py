@@ -910,8 +910,8 @@ def addSubs():
 
 @app.route('/pl')
 def langPl():
-    session['MAINDATA'] = mainDataGeneratorDict()
-    
+    # session['MAINDATA'] = mainDataGeneratorDict()
+
     session['lang'] = 'pl'
     if 'page' not in session:
         return redirect(url_for(f'indexPl'))
@@ -925,7 +925,7 @@ def langPl():
 def langEn():
     session['lang'] = 'en'
 
-    session['MAINDATA'] = mainDataGeneratorDict()
+    # session['MAINDATA'] = mainDataGeneratorDict()
 
     if 'page' not in session:
         return redirect(url_for(f'indexPl'))
