@@ -10940,7 +10940,7 @@ html [class*='section-'].section-bottom-0 {
 	top: 0;
 	left: 100%;
 	width: 100%;
-	max-width: 20%;
+	/* max-width: 20%; */
 	height: 100%;
 	background: rgba(51, 51, 51, 0.8);
 }
