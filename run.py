@@ -157,7 +157,7 @@ def generator_daneDBList(lang='pl'):
 
 def generator_daneDBList_short(lang='pl'):
     daneList = []
-    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts WHERE DATE_TIME >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
     for post in took_allPost:
 
         id_content = post[1]
