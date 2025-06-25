@@ -9,6 +9,7 @@ import mysqlDB as msq
 import secrets
 from datetime import datetime
 from googletrans import Translator
+import logging
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -256,7 +257,24 @@ def mainDataGeneratorDict():
     }
     return data
 
+logFileName = '/home/johndoe/app/dmdelitehome/logs/access.log'  # 🔁 ZMIENIAJ dla każdej aplikacji
 
+# Konfiguracja loggera
+logging.basicConfig(filename=logFileName, level=logging.INFO,
+                    format='%(asctime)s - %(message)s', filemode='a')
+
+# Funkcja do logowania informacji o zapytaniu
+def log_request():
+    ip_address = request.remote_addr
+    date_time = datetime.now()
+    endpoint = request.endpoint or request.path  # fallback jeśli brak endpointu
+    method = request.method
+
+    logging.info(f'IP: {ip_address}, Time: {date_time}, Endpoint: {endpoint}, Method: {method}')
+
+@app.before_request
+def before_request_logging():
+    log_request()
 
 ############################
 ##      ######           ###
