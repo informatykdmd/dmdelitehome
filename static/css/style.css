@@ -21552,3 +21552,17 @@ html.rd-navbar-fixed-linked .page {
 .bg-img-about-1 {
 	background-image: url("../images/about_paralax_1.jpg");
 }
+
+.bg-img-modny-1 {
+	background-image: url("../images/modny_paralax_1.jpg");
+}
+.bg-img-modny-2 {
+	background-image: url("../images/modny_paralax_2.jpg");
+}
+
+.bg-img-serce-1 {
+	background-image: url("../images/serce_paralax_1.jpg");
+}
+.bg-img-serce-2 {
+	background-image: url("../images/serce_paralax_2.jpg");
+}

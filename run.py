@@ -539,6 +539,46 @@ def lesznowolska():
         f'lesznowolska-{session["lang"]}.html', 
         blog_post_three=blog_post_three)
 
+@app.route('/serce-pl')
+def serce():
+    session['page'] = 'serce'
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+
+    if f'BLOG-FOOTER-{session["lang"]}' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
+    else:
+        blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'serce-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
+
+@app.route('/modny-pl')
+def modny():
+    session['page'] = 'modny'
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+
+    if f'BLOG-FOOTER-{session["lang"]}' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
+    else:
+        blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'modny-{session["lang"]}.html', 
+        blog_post_three=blog_post_three)
+
 @app.route('/about-pl')
 def about():
     session['page'] = 'about'
