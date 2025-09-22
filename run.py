@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, jsonify, session, request, current_app
+from flask import Flask, render_template, redirect, url_for, flash, jsonify, session, request, current_app, g
 from flask_wtf import FlaskForm
 from flask_session import Session
 from flask_paginate import Pagination, get_page_args
@@ -10,6 +10,7 @@ import secrets
 from datetime import datetime
 from googletrans import Translator
 import logging
+from MySQLModel import MySQLModel
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -31,6 +32,12 @@ Session(app)
 ###    ######    ######     ###
 ###    ######    ######     ###
 ###############################
+
+# Instancja MySql
+def get_db():
+    if 'db' not in g:
+        g.db = MySQLModel(permanent_connection=False)
+    return g.db
 
 def getLangText(text):
     """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
@@ -256,6 +263,74 @@ def mainDataGeneratorDict():
         "SUBS-ALL-PL": generator_subsDataDB()
     }
     return data
+
+def getProjectData(project_id: int, lang: str = "pl"):
+    """
+    Czyta rekord z realizacje_elitehome i buduje słownik 'theme'.
+    fetch_one ustawia atrybuty na obiekcie db, więc odczyt robimy przez getattr(db, "<kolumna>", None).
+    """
+    db = get_db()  # musi zwrócić instancję MySQLModel (albo stwórz: MySQLModel(permanent_connection=True))
+    query = """
+        SELECT *
+        FROM realizacje_elitehome
+        WHERE id = %s
+        LIMIT 1;
+    """
+    params = (project_id,)
+    db.fetch_one(query, params=params)  # ustawi atrybuty na db (np. db.id, db.tytul, db.opis_1, ...)
+
+    # Jeśli nie znaleziono rekordu, kolumna 'id' pozostanie None (po _fetch_columns); zwróć None
+    if getattr(db, "id", None) is None:
+        return None
+
+    def col(k, default=None):
+        return getattr(db, k, default)
+
+    def tr(val):
+        if val in (None, ""):
+            return val
+        # polski -> bez zmian; inne -> przepuść przez getLangText
+        return val if lang == "pl" else getLangText(val)
+
+    theme = {
+        "id": col("id"),
+
+        "tytul": tr(col("tytul")),
+        "r_start": col("r_start"),
+        "r_finish": col("r_finish"),
+
+        "slogan_1": tr(col("slogan_1")),
+        "slogan_2": tr(col("slogan_2")),
+
+        "tytul_1": tr(col("tytul_1")),
+        "podtytul_1": tr(col("podtytul_1")),
+        "opis_1": tr(col("opis_1")),
+
+        "tytul_2": tr(col("tytul_2")),
+        "podtytul_2": tr(col("podtytul_2")),
+        "opis_2": tr(col("opis_2")),
+
+        "tytul_zagadek": tr(col("tytul_zagadek")),
+        "podtytul_zagadek": tr(col("podtytul_zagadek")),
+        "zagadka_1_tytul": tr(col("zagadka_1_tytul")),
+        "zagadka_1_opis": tr(col("zagadka_1_opis")),
+        "zagadka_2_tytul": tr(col("zagadka_2_tytul")),
+        "zagadka_2_opis": tr(col("zagadka_2_opis")),
+        "zagadka_3_tytul": tr(col("zagadka_3_tytul")),
+        "zagadka_3_opis": tr(col("zagadka_3_opis")),
+
+        "minaturka": col("minaturka"),
+        "paralax_1": col("paralax_1"),
+        "paralax_2": col("paralax_2"),
+        "inside_1": col("inside_1"),
+        "inside_2": col("inside_2"),
+
+        "data_aktualizacji": col("data_aktualizacji")
+    }
+
+    return theme
+
+
 
 logFileName = '/home/johndoe/app/dmdelitehome/logs/access.log'  # 🔁 ZMIENIAJ dla każdej aplikacji
 
@@ -578,6 +653,39 @@ def modny():
     return render_template(
         f'modny-{session["lang"]}.html', 
         blog_post_three=blog_post_three)
+
+
+
+@app.route('/realizacje', methods=['GET'])
+def realizacje():
+    session['page'] = 'realizacje'
+
+    if 'id' in request.args:
+        project_id = request.args.get('id')
+    else:
+        return redirect(url_for(f'indexPl'))
+    
+    if 'lang' not in session:
+        session['lang'] = 'pl'
+    
+    pro_data = getProjectData(project_id, session['lang'])
+    
+    if f'BLOG-FOOTER-{session["lang"]}' not in session:
+        blog_post = generator_daneDBList_3(session["lang"])
+        session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
+    else:
+        blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
+
+    blog_post_three = []
+    for i, member in enumerate(blog_post):
+        if  i < 3: blog_post_three.append(member)
+
+    return render_template(
+        f'projects-{session["lang"]}.html', 
+        blog_post_three=blog_post_three,
+        pro_data=pro_data
+        )
+
 
 @app.route('/about-pl')
 def about():
