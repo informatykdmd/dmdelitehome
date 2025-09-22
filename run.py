@@ -752,7 +752,7 @@ def realizacje():
         session['lang'] = 'pl'
     
     pro_data = getProjectData(project_id, session['lang'])
-    other_projects = get_realizacje_overview(project_id, session['lang'])
+    other_projects = get_realizacje_overview(None, session['lang'])
     
     if f'BLOG-FOOTER-{session["lang"]}' not in session:
         blog_post = generator_daneDBList_3(session["lang"])
