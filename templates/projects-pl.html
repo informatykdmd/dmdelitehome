@@ -200,20 +200,22 @@
                 </ul>
             </div>
             <div class="col-xl-8 col-lg-7 col-md-12 inset-1 wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
+                {% for scr in other_projects.shortcuts %}
                 <div class="box box-sm-clear">
                     <div class="box_left">
-                        <img src="static/images/page-1_img-kurtyna.jpg" alt=""/>
+                        <img src="{{scr.minaturka}}" alt=""/>
                     </div>
                     <div class="box_body box__middle">
                         <h3>
                             <span class="text-primary">
-                                Dom Kurtyna
-                                <span class="normal text-gray-800"> 2015 - 2017</span>
+                                {{scr.title}}
+                                <span class="normal text-gray-800"> {{scr.scope}}</span>
                             </span>
                         </h3>
-                        <a class="button btn-md button-primary" href="/kurtyna-pl">Sprawdź<span class="insider"></span></a>
+                        <a class="button btn-md button-primary" href="{{scr.link}}">Sprawdź<span class="insider"></span></a>
                     </div>
                 </div>
+                {% endfor %}
                 <div class="box box-sm-clear">
                     <div class="box_left">
                         <img src="static/images/page-1_img-circle.jpg" alt=""/>

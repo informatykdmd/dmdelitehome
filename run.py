@@ -402,9 +402,12 @@ def get_realizacje_overview(
             continue
         first = group[0]  # reprezentant piątki (jeśli wolisz ostatnią: group[-1])
         label = f"{first['tytul']} {fmt_period(first['r_start'], first['r_finish'])}".strip()
+        scope = f"{fmt_period(first['r_start'], first['r_finish'])}".strip()
         shortcuts.append({
             "minaturka": first["minaturka"],
             "label": label,
+            "title": first['tytul'],
+            "scope": scope,
             "link": first["link"],
         })
 
@@ -752,7 +755,7 @@ def realizacje():
         session['lang'] = 'pl'
     
     pro_data = getProjectData(project_id, session['lang'])
-    other_projects = get_realizacje_overview(None, session['lang'])
+    other_projects = get_realizacje_overview(project_id, session['lang'])
     
     if f'BLOG-FOOTER-{session["lang"]}' not in session:
         blog_post = generator_daneDBList_3(session["lang"])
