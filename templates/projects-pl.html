@@ -79,12 +79,6 @@
     </div>
 </section>
 
-<!-- .bg-img-dune-1 {
-	background-image: url("../images/dune_paralax_1.jpg");
-}
-.bg-img-dune-2 {
-	background-image: url("../images/dune_paralax_2.jpg");
-} -->
 <!--BOOK WITH US-->
 <section class="section bg-fixed" style="background-image: url('{{pro_data.paralax_1}}')">
     <div class="container text-xs-center">
@@ -180,6 +174,7 @@
                     </span>
                 </h3>
                 <ul class="list">
+                    {{other_projects.list}}
                     {% for pro in other_projects.list %}
                         <li><a href="{{pro.link}}">{{pro.tytul}}</a></li>
                     {% endfor %}
