@@ -11,6 +11,7 @@ from datetime import datetime
 from googletrans import Translator
 import logging
 from MySQLModel import MySQLModel
+from typing import Optional, Union
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -332,6 +333,86 @@ def getProjectData(project_id: int, lang: str = "pl"):
 
     return theme
 
+
+def get_realizacje_overview(
+        exclude_id: Optional[Union[int, str]] = None, lang: str = "pl"):
+    """
+    Zwraca:
+    {
+      "list": [ { "id", "tytul", "link", "r_start", "r_finish", "minaturka" }, ... ],
+      "shortcuts": [  # 1 skrót na każde 5 realizacji
+         { "minaturka", "label", "link" },
+         ...
+      ],
+      "count": <liczba pozycji po odfiltrowaniu>
+    }
+    """
+    db = get_db()  # instancja MySQLModel
+    rows = db.getFrom(
+        """
+        SELECT id, tytul, minaturka, r_start, r_finish
+        FROM realizacje_elitehome
+        ORDER BY COALESCE(r_start, 0) DESC, id DESC
+        """,
+        as_dict=True
+    )
+
+    # --- exclude_id: pojedynczy int lub str(int)
+    ex_id: Optional[int] = None
+    if exclude_id is not None:
+        try:
+            ex_id = int(exclude_id)
+        except (TypeError, ValueError):
+            ex_id = None  # jeśli nie uda się sparsować, traktuj jak brak wykluczenia
+
+    def tr(val):
+        if val in (None, ""):
+            return val
+        return val if lang == "pl" else getLangText(val)
+
+    def fmt_period(start: Optional[int], finish: Optional[int]) -> str:
+        if isinstance(start, int) and isinstance(finish, int):
+            return f"{start} - {finish}"
+        if isinstance(start, int) and finish is None:
+            return f"od {start}"
+        if start is None and isinstance(finish, int):
+            return f"do {finish}"
+        return ""
+
+    # --- pełna lista (po filtrze exclude_id)
+    items = []
+    for r in rows:
+        if ex_id is not None and r["id"] == ex_id:
+            continue
+        link = f"/realizacje?id={r['id']}"
+        items.append({
+            "id": r["id"],
+            "tytul": tr(r["tytul"]),
+            "link": link,
+            "r_start": r["r_start"],   # int lub None
+            "r_finish": r["r_finish"], # int lub None
+            "minaturka": r["minaturka"],
+        })
+
+    # --- skróty: 1 skrót na każde 5 realizacji → bierzemy pierwszą z każdej piątki
+    shortcuts = []
+    for i in range(0, len(items), 5):
+        group = items[i:i+5]
+        if not group:
+            continue
+        first = group[0]  # reprezentant piątki (jeśli wolisz ostatnią: group[-1])
+        label = f"{first['tytul']} {fmt_period(first['r_start'], first['r_finish'])}".strip()
+        shortcuts.append({
+            "minaturka": first["minaturka"],
+            "label": label,
+            "link": first["link"],
+        })
+
+    return {
+        "list": items,
+        "shortcuts": shortcuts,
+        "count": len(items),
+    }
 
 
 logFileName = '/home/johndoe/app/dmdelitehome/logs/access.log'  # 🔁 ZMIENIAJ dla każdej aplikacji
@@ -671,6 +752,7 @@ def realizacje():
         session['lang'] = 'pl'
     
     pro_data = getProjectData(project_id, session['lang'])
+    other_projects = get_realizacje_overview(project_id, session['lang'])
     
     if f'BLOG-FOOTER-{session["lang"]}' not in session:
         blog_post = generator_daneDBList_3(session["lang"])
@@ -685,7 +767,8 @@ def realizacje():
     return render_template(
         f'projects-{session["lang"]}.html', 
         blog_post_three=blog_post_three,
-        pro_data=pro_data
+        pro_data=pro_data,
+        other_projects=other_projects
         )
 
 

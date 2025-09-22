@@ -180,6 +180,17 @@
                     </span>
                 </h3>
                 <ul class="list">
+                    {% for pro in other_projects.list %}
+                        <li><a href="{{pro.link}}">{{pro.tytul}}</a></li>
+                    {% endfor %}
+
+                    <!-- "id": r["id"],
+                    "tytul": tr(r["tytul"]),
+                    "link": link,
+                    "r_start": r["r_start"],   # int lub None
+                    "r_finish": r["r_finish"], # int lub None
+                    "minaturka": r["minaturka"], -->
+
                     <!-- <li><a href="/dune-pl">Dune House</a></li> -->
                     <li><a href="/kurtyna-pl">Dom Kurtyna</a></li>
                     <li><a href="/circle-pl">Circle Wood</a></li>
