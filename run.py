@@ -301,6 +301,8 @@ def getProjectData(project_id: int, lang: str = "pl"):
 
         "slogan_1": tr(col("slogan_1")),
         "slogan_2": tr(col("slogan_2")),
+        "slogan_3": tr(col("slogan_3")),
+        "slogan_4": tr(col("slogan_4")),
 
         "tytul_1": tr(col("tytul_1")),
         "podtytul_1": tr(col("podtytul_1")),
