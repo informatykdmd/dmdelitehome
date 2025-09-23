@@ -150,69 +150,35 @@
             <div class="col-xl-4 col-lg-5 col-md-12 inset-3 wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="1s">
                 <h3>
                     <span class="text-primary">
-                        Our
+                        Other Our
                     </span><br>
                     <span class="normal">
                         Projects
                     </span>
                 </h3>
                 <ul class="list">
-                    <li><a href="/dune-pl">Dune House</a></li>
-                    <li><a href="/kurtyna-pl">Curtain House</a></li>
-                    <li><a href="/circle-pl">Circle Wood</a></li>
-                    <li><a href="/wind-pl">Wind House</a></li>
-                    <li><a href="/floryda-pl">Florida Villa</a></li>
-                    <li><a href="/lustrzany-pl">Mirror House</a></li>
-                    <li><a href="/miejska-pl">Urban Villa</a></li>
-                    <li><a href="/gonty-pl">House of Shingles and Gabions</a></li>
-                    <li><a href="/lesznowolska-pl">Lesznowola</a></li>
-                    <li><a href="/modny-pl">Fashion(ed) House</a></li>
-                    <li><a href="/serce-pl">Forest Core</a></li>
+                    {% for pro in other_projects.list %}
+                        <li><a href="{{pro.link}}">{{pro.tytul}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-xl-8 col-lg-7 col-md-12 inset-1 wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
+                {% for scr in other_projects.shortcuts %}
                 <div class="box box-sm-clear">
                     <div class="box_left">
-                        <img src="static/images/page-1_img-dune.jpg" alt=""/>
+                        <img src="{{scr.minaturka}}" alt=""/>
                     </div>
                     <div class="box_body box__middle">
                         <h3>
                             <span class="text-primary">
-                                Dune House
-                                <span class="normal text-gray-800"> 2019 - 2021</span>
+                                {{scr.title}}
+                                <span class="normal text-gray-800"> {{scr.scope}}</span>
                             </span>
                         </h3>
-                        <a class="button btn-md button-primary" href="/dune-pl">Check Out<span class="insider"></span></a>
+                        <a class="button btn-md button-primary" href="{{scr.link}}">Check Out<span class="insider"></span></a>
                     </div>
                 </div>
-                <div class="box box-sm-clear">
-                    <div class="box_left">
-                        <img src="static/images/page-1_img-kurtyna.jpg" alt=""/>
-                    </div>
-                    <div class="box_body box__middle">
-                        <h3>
-                            <span class="text-primary">
-                                Curtain House
-                                <span class="normal text-gray-800"> 2015 - 2017</span>
-                            </span>
-                        </h3>
-                        <a class="button btn-md button-primary" href="/kurtyna-pl">Check Out<span class="insider"></span></a>
-                    </div>
-                </div>
-                <div class="box box-sm-clear">
-                    <div class="box_left">
-                        <img src="static/images/page-1_img-circle.jpg" alt=""/>
-                    </div>
-                    <div class="box_body box__middle">
-                        <h3>
-                            <span class="text-primary">
-                                Circle Wood
-                                <span class="normal text-gray-800"> 2018 - 2020</span>
-                            </span>
-                        </h3>
-                        <a class="button btn-md button-primary" href="/circle-pl">Check Out<span class="insider"></span></a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -158,71 +158,35 @@
             <div class="col-xl-4 col-lg-5 col-md-12 inset-3 wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="1s">
                 <h3>
                     <span class="text-primary">
-                        Nasze
+                        Inne Nasze
                     </span><br>
                     <span class="normal">
                         Realizacje
                     </span>
                 </h3>
-                
                 <ul class="list">
-                    <li><a href="/dune-pl">Dune House</a></li>
-                    <li><a href="/kurtyna-pl">Dom Kurtyna</a></li>
-                    <li><a href="/circle-pl">Circle Wood</a></li>
-                    <li><a href="/wind-pl">Wind House</a></li>
-                    <li><a href="/floryda-pl">Willa Floryda</a></li>
-                    <li><a href="/lustrzany-pl">Dom Lustrzany</a></li>
-                    <li><a href="/miejska-pl">Willa Miejska</a></li>
-                    <li><a href="/gonty-pl">Dom Z Gontów i Gabionów</a></li>
-                    <li><a href="/lesznowolska-pl">Lesznowolska</a></li>
-                    <li><a href="/serce-pl">Serce Lasu</a></li>
-                    <li><a href="/modny-pl">Dom Mod(n)y</a></li>
+                    {% for pro in other_projects.list %}
+                        <li><a href="{{pro.link}}">{{pro.tytul}}</a></li>
+                    {% endfor %}
                 </ul>
-
             </div>
             <div class="col-xl-8 col-lg-7 col-md-12 inset-1 wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
+                {% for scr in other_projects.shortcuts %}
                 <div class="box box-sm-clear">
                     <div class="box_left">
-                        <img src="static/images/page-1_img06.jpg" alt=""/>
+                        <img src="{{scr.minaturka}}" alt=""/>
                     </div>
                     <div class="box_body box__middle">
                         <h3>
                             <span class="text-primary">
-                                Wind House
-                                <span class="normal text-gray-800"> 2018 - 2020</span>
+                                {{scr.title}}
+                                <span class="normal text-gray-800"> {{scr.scope}}</span>
                             </span>
                         </h3>
-                        <a class="button btn-md button-primary" href="/wind-pl">Sprawdź<span class="insider"></span></a>
+                        <a class="button btn-md button-primary" href="{{scr.link}}">Sprawdź<span class="insider"></span></a>
                     </div>
                 </div>
-                <div class="box box-sm-clear">
-                    <div class="box_left">
-                        <img src="static/images/page-1_img07.jpg" alt=""/>
-                    </div>
-                    <div class="box_body box__middle">
-                        <h3>
-                            <span class="text-primary">
-                                Willa Floryda
-                                <span class="normal text-gray-800"> 2021 - 2022</span>
-                            </span>
-                        </h3>
-                        <a class="button btn-md button-primary" href="/floryda-pl">Sprawdź<span class="insider"></span></a>
-                    </div>
-                </div>
-                <div class="box box-sm-clear">
-                    <div class="box_left">
-                        <img src="static/images/page-1_img08.jpg" alt=""/>
-                    </div>
-                    <div class="box_body box__middle">
-                        <h3>
-                            <span class="text-primary">
-                                Willa Miesja
-                                <span class="normal text-gray-800"> 2020 - 2021</span>
-                            </span>
-                        </h3>
-                        <a class="button btn-md button-primary" href="/miejska-pl">Sprawdź<span class="insider"></span></a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

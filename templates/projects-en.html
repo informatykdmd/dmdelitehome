@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}DMD ELITEHOME - Dune House {% endblock %}
+{% block title %}DMD ELITEHOME - {{pro_data.tytul}} {% endblock %}
 
 {% block body_header %}
 <header class="section page-header">
@@ -72,37 +72,33 @@
 
 {% block content %}
 <!--A FEW WORDS-->
- <section class="section well-2">
+<section class="section well-2">
     <div class="container text-center text-lg-start">
-        <h3 class="text-primary">Dune House</h3>
-        <h3 class="normal">2019 - 2021</h3>
+        <h3 class="text-primary">{{pro_data.tytul}}</h3>
+        <h3 class="normal">{{pro_data.r_start}} - {{pro_data.r_finish}}</h3>
     </div>
 </section>
 
 <!--BOOK WITH US-->
-<section class="section bg-fixed bg-img-dune-1">
+<section class="section bg-fixed" style="background-image: url('{{pro_data.paralax_1}}')">
     <div class="container text-xs-center">
         <div class="row">
             <div class="col-xl-5 col-lg-6 inset-2">
                 <div class="banner banner__mod bg-primary-variant-1">
                     <div class="banner_cnt">
-                        <h2>Dune House Reveals<br><span class="normal">Architecture and Nature</span></h2>
+                        <h2>{{pro_data.slogan_1}}<br><span class="normal">{{pro_data.slogan_2}}</span></h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row justify-content-lg-end offset-0">
-            <div class="col-xl-8 col-lg-7 inset-1 image-wrap-3"><img src="static/images/page-2_img02-dune.jpg" alt=""/>
+            <div class="col-xl-8 col-lg-7 inset-1 image-wrap-3"><img src="{{pro_data.inside_1}}" alt=""/>
                 <div class="banner banner__mod banner__mod-2 bg-contrast-variant-2 bg-contrast-variant-2__after">
                     <div class="banner_cnt">
-                        <h3>Discover Dune House</h3>
-                        <h3 class="normal">Harmony of Space</h3>
+                        <h3>{{pro_data.tytul_1}}</h3>
+                        <h3 class="normal">{{pro_data.podtytul_1}}</h3>
                         <p>
-                            Dune House, a creation of Mobius Architects, combines innovative architecture 
-                            with the picturesque landscape of the Narew River. Its unique form, resembling 
-                            a dune, integrates with the surroundings, offering unparalleled views and privacy. 
-                            This architectural gem near Warsaw is an example of perfect symbiosis between 
-                            a building and nature.
+                            {{pro_data.opis_1}}
                         </p>
                     </div>
                 </div>
@@ -113,60 +109,51 @@
 <!--OUR CUSTOMERS-->
 <section class="well-2 well-2--inset-1 text-xs-center">
 <div class="container">
-    <h3 class="text-primary">Secrets of Dune House</h3>
-    <h3 class="normal">Discover the Unknown</h3>
-    <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
-          <h3 class="small">Harmonious Integration</h3>
-          <div>
-              Dune House perfectly blends into the landscape, resembling a natural dune, 
-              making it invisible from the road and emphasizing its private nature.
-          </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay=".6s" data-wow-duration="1s">
-          <h3 class="small">Architectural Harp</h3>
-          <div>
-              Its arc-like form, akin to a harp, vibrates with the landscape, creating a unique connection 
-              with nature and opening the interior to the vast views of the Narew River.
-          </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay=".9s" data-wow-duration="1s">
-        <h3 class="small">Innovation and Comfort</h3>
+  <h3 class="text-primary">{{pro_data.tytul_zagadek}}</h3>
+  <h3 class="normal">{{pro_data.podtytul_zagadek}}</h3>
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
+        <h3 class="small">{{pro_data.zagadka_1_tytul}}</h3>
         <div>
-            The house is equipped with a range of modern solutions, including two swimming pools, helipads, 
-            and automated elements, enhancing living comfort.
+            {{pro_data.zagadka_1_opis}}
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay=".6s" data-wow-duration="1s">
+        <h3 class="small">{{pro_data.zagadka_2_tytul}}</h3>
+        <div>
+            {{pro_data.zagadka_2_opis}}
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay=".9s" data-wow-duration="1s">
+        <h3 class="small">{{pro_data.zagadka_3_tytul}}</h3>
+        <div>
+            {{pro_data.zagadka_3_opis}}
         </div>
     </div>
   </div>
 </div>
 </section>
 <!--TRAVEL IN STYLE TO THE BEST-->
-<section class="bg-fixed bg-img-dune-2">
+<section class="bg-fixed" style="background-image: url('{{pro_data.paralax_2}}')">
 <div class="container text-xs-center">
   <div class="row justify-content-lg-end wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
     <div class="col-xl-5 col-lg-6 inset-4">
       <div class="banner banner__mod banner__mod-3 bg-default">
         <div class="banner_cnt">
-            <h2><span class="text-primary">Making Dreams Come True</span><br><span class="normal">Dune House Stands Out</span></h2>
+          <h2><span class="text-primary">{{pro_data.slogan_3}}</span><br><span class="normal">{{pro_data.slogan_4}}</span></h2>
         </div>
       </div>
     </div>
   </div>
   <div class="row offset-0 wow fadeInLeft" data-wow-delay=".6s" data-wow-duration="1s">
-    <div class="col-xl-8 col-lg-7 inset-5 image-wrap-3-mod"><img src="static/images/page-2_img03-dune.jpg" alt=""/>
+    <div class="col-xl-8 col-lg-7 inset-5 image-wrap-3-mod"><img src="{{pro_data.inside_2}}" alt=""/>
       <div class="banner banner__mod banner__mod-4 bg-contrast-variant-2 bg-contrast-variant-2__before">
         <div class="banner_cnt">
-            <h3>Dune at EliteHome</h3>
-            <h3 class="normal">A Jewel of Architecture</h3>
-            <p>
-                  Dune House, designed by Przemek Olczyk from Mobius Architects, is 
-                  the quintessence of luxury and modernity. Located in a picturesque landscape 
-                  near Warsaw, it combines advanced architecture with the natural beauty 
-                  of its surroundings. The realization of this project is proof of how innovative 
-                  design approaches can create spaces that are both functional and inspiring. EliteHome, serving as the general contractor, is immensely proud of this flagship project, which 
-                  not only raises the standards of contemporary construction but also sets 
-                  new trends in harmoniously integrating living spaces with the surrounding nature.
-            </p>
+          <h3>{{pro_data.tytul_2}}</h3>
+          <h3 class="normal">{{pro_data.podtytul_2}}</h3>
+          <p>
+               {{pro_data.opis_2}}
+          </p>
         </div>
       </div>
     </div>
@@ -187,62 +174,28 @@
                     </span>
                 </h3>
                 <ul class="list">
-                    <!-- <li><a href="/dune-pl">Dune House</a></li> -->
-                    <li><a href="/kurtyna-pl">Curtain House</a></li>
-                    <li><a href="/circle-pl">Circle Wood</a></li>
-                    <li><a href="/wind-pl">Wind House</a></li>
-                    <li><a href="/floryda-pl">Villa Florida</a></li>
-                    <li><a href="/lustrzany-pl">Mirror House</a></li>
-                    <li><a href="/miejska-pl">Urban Villa</a></li>
-                    <li><a href="/gonty-pl">House of Shingles and Gabions</a></li>
-                    <li><a href="/lesznowolska-pl">Lesznowola</a></li>
-                    <li><a href="/modny-pl">Fashion(ed) House</a></li>
-                    <li><a href="/serce-pl">Forest Core</a></li>
+                    {% for pro in other_projects.list %}
+                        <li><a href="{{pro.link}}">{{pro.tytul}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-xl-8 col-lg-7 col-md-12 inset-1 wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
+                {% for scr in other_projects.shortcuts %}
                 <div class="box box-sm-clear">
                     <div class="box_left">
-                        <img src="static/images/page-1_img-kurtyna.jpg" alt=""/>
+                        <img src="{{scr.minaturka}}" alt=""/>
                     </div>
                     <div class="box_body box__middle">
                         <h3>
                             <span class="text-primary">
-                                Curtain House
-                                <span class="normal text-gray-800"> 2015 - 2017</span>
+                                {{scr.title}}
+                                <span class="normal text-gray-800"> {{scr.scope}}</span>
                             </span>
                         </h3>
-                        <a class="button btn-md button-primary" href="/kurtyna-pl">Check Out<span class="insider"></span></a>
+                        <a class="button btn-md button-primary" href="{{scr.link}}">Check Out<span class="insider"></span></a>
                     </div>
                 </div>
-                <div class="box box-sm-clear">
-                    <div class="box_left">
-                        <img src="static/images/page-1_img-circle.jpg" alt=""/>
-                    </div>
-                    <div class="box_body box__middle">
-                        <h3>
-                            <span class="text-primary">
-                                Circle Wood
-                                <span class="normal text-gray-800"> 2018 - 2020</span>
-                            </span>
-                        </h3>
-                        <a class="button btn-md button-primary" href="/circle-pl">Check Out<span class="insider"></span></a>
-                    </div>
-                </div>
-                <div class="box box-sm-clear">
-                    <div class="box_left">
-                        <img src="static/images/page-1_img-wind.jpg" alt=""/>
-                    </div>
-                    <div class="box_body box__middle">
-                        <h3>
-                            <span class="text-primary">
-                                Wind House
-                                <span class="normal text-gray-800"> 2018 - 2020</span>
-                            </span>
-                        </h3>
-                        <a class="button btn-md button-primary" href="/wind-pl">Check Out<span class="insider"></span></a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -284,10 +237,10 @@
                         {% for post in blog_post_three %}
                         <li class="rd-nav-item margin-top-standard">
                             <h5 class="strong">
-                                <a href="/blog-one-pl?post={{post['id']}}">{{post['title']}}</a>
+                                <a href="/blog-one-pl?post={{post.id}}">{{post.title}}</a>
                             </h5>
-                            <div class="font-category">{{post['category']}}</div>
-                            <div class="footer-desc"><i class="fa fa-user"></i> {{post['author']}} <i class="fa fa-calendar"></i> {{post['data']}}</div>
+                            <div class="font-category">{{post.category}}</div>
+                            <div class="footer-desc"><i class="fa fa-user"></i> {{post.author}} <i class="fa fa-calendar"></i> {{post.data}}</div>
                         </li>
                         {% endfor %}
                     </ul>

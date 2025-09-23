@@ -480,6 +480,8 @@ def indexPl():
     else:
         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
     
+    other_projects = get_realizacje_overview(None, session['lang'])
+    
     blog_post_three = []
     for i, member in enumerate(blog_post):
         if  i < 3: blog_post_three.append(member)
@@ -487,7 +489,8 @@ def indexPl():
     return render_template(
         f'index-{session["lang"]}.html', 
         fourListTeam=fourListTeam, 
-        blog_post_three=blog_post_three
+        blog_post_three=blog_post_three,
+        other_projects=other_projects
         )
 
     
@@ -497,6 +500,8 @@ def done():
     session['page'] = 'done'
     if 'lang' not in session:
         session['lang'] = 'pl'
+    
+    other_projects = get_realizacje_overview(None, session['lang'])
 
     if f'BLOG-FOOTER-{session["lang"]}' not in session:
         blog_post = generator_daneDBList_3(session["lang"])
@@ -510,7 +515,9 @@ def done():
 
     return render_template(
         f'done-{session["lang"]}.html', 
-        blog_post_three=blog_post_three)
+        blog_post_three=blog_post_three,
+        other_projects=other_projects
+        )
     
 
 @app.route('/dune-pl')
