@@ -396,8 +396,8 @@ def get_realizacje_overview(
 
     # --- skróty: 1 skrót na każde 5 realizacji → bierzemy pierwszą z każdej piątki
     shortcuts = []
-    for i in range(0, len(items), 5):
-        group = items[i:i+5]
+    for i in range(0, len(items), 4):
+        group = items[i:i+4]
         if not group:
             continue
         first = group[0]  # reprezentant piątki (jeśli wolisz ostatnią: group[-1])
