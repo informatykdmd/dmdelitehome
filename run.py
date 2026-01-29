@@ -6,8 +6,7 @@ from flask_paginate import Pagination, get_page_args
 import mysqlDB as msq
 import secrets
 from datetime import datetime
-# from bin.config_utils import MISTRAL_API_KEY
-# from bin.wrapper_mistral import MistralChatManager
+
 import logging
 from MySQLModel import MySQLModel
 from typing import Optional, Union
@@ -40,29 +39,22 @@ def get_db():
         g.db = MySQLModel(permanent_connection=False)
     return g.db
 
-def getLangText(text, source="pl", target="en"):
+def getLangText(text, dest="en", source="pl"):
     if not text:
         return text
-
-    payload = {
-        "text": str(text),
-        "source": source,
-        "target": target,
-        "format": "text"
-    }
-
+    # bezpiecznik: nie tłumacz "ścian"
+    if len(text) > 8000:
+        return text
     try:
         r = requests.post(
             "http://127.0.0.1:5055/translate",
-            json=payload,
-            timeout=20
+            json={"text": text, "source": source, "target": dest, "format": "text"},
+            timeout=(2, 8),
         )
         r.raise_for_status()
-        data = r.json()
-        return data.get("translated", text)
+        return r.json().get("text", text)
     except Exception as e:
-        # fail-safe: zwracamy oryginał, nie wysadzamy systemu
-        print(f"[TRANSLATOR ERROR] {e}")
+        print(f"Exception Error: {e}")
         return text
 
 # def getLangText_mistral(text):
