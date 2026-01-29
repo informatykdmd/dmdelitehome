@@ -1,14 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, flash, jsonify, session, request, current_app, g
-from flask_wtf import FlaskForm
+
 from flask_session import Session
 from flask_paginate import Pagination, get_page_args
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
-from werkzeug.utils import secure_filename
+
 import mysqlDB as msq
 import secrets
 from datetime import datetime
-from googletrans import Translator
+from bin.config_utils import MISTRAL_API_KEY
+from bin.wrapper_mistral import MistralChatManager
 import logging
 from MySQLModel import MySQLModel
 from typing import Optional, Union
@@ -42,9 +41,16 @@ def get_db():
 
 def getLangText(text):
     """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
-    translator = Translator()
-    translation = translator.translate(str(text), dest='en')
-    return translation.text
+    mgr = MistralChatManager(MISTRAL_API_KEY)
+    out = mgr.translate(text, target_lang='en')
+    return out
+
+def getLangText_old(text):
+    """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
+    # from googletrans import Translator
+    # translator = Translator()
+    # translation = translator.translate(str(text), dest='en')
+    # return translation.text
 
 def format_date(date_input, pl=True):
     ang_pol = {
@@ -519,234 +525,6 @@ def done():
         other_projects=other_projects
         )
     
-
-# @app.route('/dune-pl')
-# def dune():
-#     session['page'] = 'dune'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'dune-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-    
-
-# @app.route('/kurtyna-pl')
-# def kurtyna():
-#     session['page'] = 'kurtyna'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-#     return render_template(
-#         f'kurtyna-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-    
-
-
-# @app.route('/circle-pl')
-# def circle():
-#     session['page'] = 'circle'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'circle-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-
-
-# @app.route('/wind-pl')
-# def wind():
-#     session['page'] = 'wind'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'wind-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-
-
-# @app.route('/floryda-pl')
-# def floryda():
-#     session['page'] = 'floryda'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'floryda-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-    
-
-
-# @app.route('/lustrzany-pl')
-# def lustrzany():
-#     session['page'] = 'lustrzany'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'lustrzany-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-    
-
-# @app.route('/miejska-pl')
-# def miejska():
-#     session['page'] = 'miejska'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'miejska-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-
-# @app.route('/gonty-pl')
-# def gonty():
-#     session['page'] = 'gonty'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'gonty-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-
-# @app.route('/lesznowolska-pl')
-# def lesznowolska():
-#     session['page'] = 'lesznowolska'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'lesznowolska-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-
-# @app.route('/serce-pl')
-# def serce():
-#     session['page'] = 'serce'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'serce-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-
-# @app.route('/modny-pl')
-# def modny():
-#     session['page'] = 'modny'
-#     if 'lang' not in session:
-#         session['lang'] = 'pl'
-
-#     if f'BLOG-FOOTER-{session["lang"]}' not in session:
-#         blog_post = generator_daneDBList_3(session["lang"])
-#         session[f'BLOG-FOOTER-{session["lang"]}'] = blog_post
-#     else:
-#         blog_post = session[f'BLOG-FOOTER-{session["lang"]}']
-
-#     blog_post_three = []
-#     for i, member in enumerate(blog_post):
-#         if  i < 3: blog_post_three.append(member)
-
-#     return render_template(
-#         f'modny-{session["lang"]}.html', 
-#         blog_post_three=blog_post_three)
-
 
 
 @app.route('/realizacje', methods=['GET'])
