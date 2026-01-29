@@ -6,11 +6,12 @@ from flask_paginate import Pagination, get_page_args
 import mysqlDB as msq
 import secrets
 from datetime import datetime
-from bin.config_utils import MISTRAL_API_KEY
-from bin.wrapper_mistral import MistralChatManager
+# from bin.config_utils import MISTRAL_API_KEY
+# from bin.wrapper_mistral import MistralChatManager
 import logging
 from MySQLModel import MySQLModel
 from typing import Optional, Union
+import requests
 
 app = Flask(__name__)
 app.config['PER_PAGE'] = 6  # Określa liczbę elementów na stronie
@@ -39,11 +40,36 @@ def get_db():
         g.db = MySQLModel(permanent_connection=False)
     return g.db
 
-def getLangText(text):
-    """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
-    mgr = MistralChatManager(MISTRAL_API_KEY)
-    out = mgr.translate(text, target_lang='en')
-    return out
+def getLangText(text, source="pl", target="en"):
+    if not text:
+        return text
+
+    payload = {
+        "text": str(text),
+        "source": source,
+        "target": target,
+        "format": "text"
+    }
+
+    try:
+        r = requests.post(
+            "http://127.0.0.1:5055/translate",
+            json=payload,
+            timeout=20
+        )
+        r.raise_for_status()
+        data = r.json()
+        return data.get("translated", text)
+    except Exception as e:
+        # fail-safe: zwracamy oryginał, nie wysadzamy systemu
+        print(f"[TRANSLATOR ERROR] {e}")
+        return text
+
+# def getLangText_mistral(text):
+#     """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
+#     mgr = MistralChatManager(MISTRAL_API_KEY)
+#     out = mgr.translate(text, target_lang='en')
+#     return out
 
 def getLangText_old(text):
     """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
